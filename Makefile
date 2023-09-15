@@ -1,16 +1,16 @@
 .PHONY: build run test
 
-build: clean-build
-	mkdir build
+build: clean
+	mkdir ./lab$(labNum)/build
 	git submodule init
 	git submodule update
-	cd ./build; cmake ..; make all
+	cd ./lab$(labNum)/build; cmake -DLAB_NUMBER=lab$(labNum) ../..; make all
 
 run:
-	./build/*_exe
+	./lab$(labNum)/build/*_exe
 
 test:
-	./build/*_test
+	./lab$(labNum)/build/*_test
 
-clean-build:
-	rm -rf ./build/
+clean:
+	rm -rf ./lab$(labNum)/build/
