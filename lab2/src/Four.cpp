@@ -163,7 +163,23 @@ bool Four::greaterThanEq(const Four& other) {
     return !(this->lowerThan(other));
 }
 
+bool Four::equal(const Four& other)
+{
+    const int numberLen = number.size();
+    const int otherNumberLen = other.number.size();
 
+    if (otherNumberLen != numberLen) {
+        return false;
+    }
+
+    for (int i = 0; i < numberLen; ++i) {
+        if (number[i] != other.number[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 
 void Four::subtract(const Four& other)
