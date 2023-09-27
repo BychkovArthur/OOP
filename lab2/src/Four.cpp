@@ -8,6 +8,7 @@
 // - rewrite on own dynamic array
 // - Проверка на число из верного множества (иначе, ошибка)
 // - Возможно, последние два конструктора можно сделать без копирования. move - семантика
+// - Проверка на EQ
 
 
 
@@ -162,13 +163,48 @@ bool Four::greaterThanEq(const Four& other) {
     return !(this->lowerThan(other));
 }
 
+
+
+
 void Four::subtract(const Four& other)
 {
     if (this->lowerThan(other)) {
-        std::cout << "ERROR" << std::endl;
+        std::cout << "ERROR" << std::endl; // Здесь должна быть ошибка...
         return;
     }
+
+    const int numberLen = number.size();
+    const int otherNumberLen = other.number.size();
+
+    int remainder = 0;
+
+    for (int i = 0; i < max(numberLen, otherNumberLen); ++i) {
+        int num = i < numberLen ? charToNum(number[i]) : 0;
+        int otherNum = i < otherNumberLen ? charToNum(other.number[i]) : 0;
+
+        unsigned int difference;
+
+        if (num - remainder < otherNum) { // Надо занимать разряд
+            difference = MAX_VALUE + num - otherNum - remainder;
+            remainder = 1;
+        } else {
+            difference = num - otherNum - remainder;
+            remainder = 0;
+        }
+        number[i] = numToChar(difference);
+    }
+
+    // Стираем незначащие нули
+    int i = numberLen - 1;
+    while (i > 0 && number[i] == '0') {
+        number.pop_back();
+        --i;
+    }
 }
+
+
+
+
 
 int Four::min(const int a,const int b) {
     return a < b ? a : b;
@@ -179,16 +215,11 @@ int Four::max(const int a,const int b) {
 }
 
 int main() {
-    // Four val = Four();
 
-    Four val2  = Four("33333333332");
-    Four val3 {"33333333333"};
-    // Four val4{val3};
+    Four val  = Four("10001");
+    Four val1 {"11"};
+    val.subtract(val1);
 
-    // val.printNubmer();
-    // val2.printNubmer();
-    // val3.printNubmer();
-    // val4.printNubmer();
-
-    std::cout << val3.lowerThanEq(val2) << std::endl;
+    // std::cout << val3. << std::endl;
+    val.printNubmer();
 }
