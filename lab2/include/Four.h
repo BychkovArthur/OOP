@@ -23,6 +23,8 @@ public:
     bool lowerThanEq(const Four&);
     bool greaterThan(const Four&);
     bool greaterThanEq(const Four&);
+    bool equal(const Four& other);
+
 
     // TODO:
     // - noexcept, надо ли в header?
