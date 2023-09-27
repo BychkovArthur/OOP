@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Установка флагов для компиляции
-add_compile_options(-g -rdynamic)
+add_compile_options(-g -rdynamic -Wall)
 
 # Настройка переменных для папок
 set(INCLUDE_DIR ${CMAKE_PROJECT_NAME}/include)
