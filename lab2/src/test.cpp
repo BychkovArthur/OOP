@@ -18,10 +18,6 @@ private:
  
 int main()
 {
-    {
-        Person tom{"Tom"};
-        Person bob{"Bob"};
-    }   // объекты Tom и Bob уничтожаются
- 
-    Person sam{"Sam"};
-}   // объект Sam уничтожается
+    unsigned char a = '0' + -1;
+    std::cout << a << std::endl;
+}
