@@ -1,4 +1,5 @@
 #include "../include/Four.h"
+#include "../include/functions.h"
 #include <iostream>
 #include <math.h>
 
@@ -71,20 +72,6 @@ void Four::printNubmer()
         std::cout << character << " ";
     }
     std::cout << std::endl;
-}
-
-
-
-unsigned int Four::charToNum(unsigned char character)
-{
-    // Проверка на отрицательные
-    return character - (unsigned char) '0';
-}
-
-unsigned char Four::numToChar(unsigned int num)
-{
-    // Проверка на отрицательные
-    return (unsigned char) '0' + num;
 }
 
 
@@ -217,17 +204,6 @@ void Four::subtract(const Four& other)
     }
 }
 
-
-
-
-
-int Four::min(const int a,const int b) {
-    return a < b ? a : b;
-}
-
-int Four::max(const int a,const int b) {
-    return a > b ? a : b;
-}
 
 int main() {
 

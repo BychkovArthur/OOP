@@ -1,5 +1,5 @@
-#ifndef FOUR_CLASS
-#define FOUR_CLASS
+#ifndef FOUR_CLASS_H
+#define FOUR_CLASS_H
 
 #include <stdlib.h>
 #include <initializer_list>
@@ -33,15 +33,8 @@ public:
     // virtual ~Four();
 private:
     std::vector<unsigned char> number;
-    
-
-    const unsigned char correctCharacters[4] {'0', '1', '2', '3'}; // сделать единым для класса
-
-    unsigned int charToNum(unsigned char); // В функции
-    unsigned char numToChar(unsigned int num); // В функции
-    int min(const int,const int); // В функции
-    int max(const int,const int); // В функции
-    const unsigned int MAX_VALUE = 4; // разобраться с этой константой, как ее сделать отдельной
+    static inline const unsigned char correctCharacters[4] {'0', '1', '2', '3'};
+    static const unsigned int MAX_VALUE = 4;
 };
 
-#endif // FOUR_CLASS
+#endif // FOUR_CLASS_H

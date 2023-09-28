@@ -3,21 +3,28 @@
 class Person
 {
 public:
-    Person(std::string p_name)
+    Person(std::string p_name, unsigned p_age)
     {
+        ++count;    // при создании нового объекта увеличиваем счетчик
         name = p_name;
-        std::cout << "Person " << name << " created" << std::endl;
+        age = p_age;
     }
-    ~Person()
+    void print_count()
     {
-        std::cout << "Person " << name << " deleted" << std::endl;
+        std::cout << "Created " << count << " objects" << std::endl;
     }
 private:
     std::string name;
+    unsigned age;
+    static unsigned count{};  // статическое поле - счетчик объектов Person
 };
  
 int main()
 {
-    unsigned char a = '0' + -1;
-    std::cout << a << std::endl;
+    Person tom{"Tom", 38};
+    Person bob{"Bob", 42};
+    Person sam{"Sam", 25};
+    tom.print_count();
+    bob.print_count();
+    sam.print_count();
 }
