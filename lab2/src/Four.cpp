@@ -3,8 +3,8 @@
 
 // TODO
 // - rvalue copy constructor
-// - rewrite on own dynamic array
 // - Возможно, последние два конструктора можно сделать без копирования. move - семантика
+// - удалить вывод названия конструктора
 
 inline int min(const int a,const int b) {
     return a < b ? a : b;
@@ -242,15 +242,4 @@ bool Four::correctCharacter(const unsigned char character)
         }
     }
     return false;
-}
-
-
-int main() {
-
-    Four val {"111111"};
-    Four val1 {"11"};
-    val.subtract(val1);
-
-    // std::cout << val3. << std::endl;
-    val.print();
 }
