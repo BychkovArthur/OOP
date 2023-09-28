@@ -5,6 +5,8 @@
 // - rvalue copy constructor
 // - Возможно, последние два конструктора можно сделать без копирования. move - семантика
 // - удалить вывод названия конструктора
+// - мб в функции вывести inline
+// - при билде варнинги
 
 inline int min(const int a,const int b) {
     return a < b ? a : b;
@@ -28,14 +30,14 @@ inline unsigned char numToChar(unsigned int num)
 
 Four::Four()
 {
-    std::cout << "Default constructor" << std::endl;
+    // std::cout << "Default constructor" << std::endl;
     number.pushBack((unsigned char) '0');
 }
 
 
 Four::Four(const size_t& n, unsigned char character = 0)
 {
-    std::cout << "Repeating character constructor" << std::endl;
+    // std::cout << "Repeating character constructor" << std::endl;
 
     if (!correctCharacter(character)) {
         std::string errorMessage = "Incorrect character: ";
@@ -51,7 +53,7 @@ Four::Four(const size_t& n, unsigned char character = 0)
 
 Four::Four(const std::initializer_list<unsigned char>& initLst)
 {
-    std::cout << "Initializer_List constructor" << std::endl;
+    // std::cout << "Initializer_List constructor" << std::endl;
 
     for(unsigned char character : initLst) {
         if (!correctCharacter(character)) {
@@ -79,7 +81,7 @@ Four::Four(const std::string& other)
         }
     }
 
-    std::cout << "String constructor" << std::endl;
+    // std::cout << "String constructor" << std::endl;
 
     for (int i =  other.size() - 1; 0 <= i; --i) {
         number.pushBack(other[i]);
@@ -92,7 +94,7 @@ Four::Four(const Four& other)
     for (int i = 0; i < other.number.getSize(); ++i) {
         number.pushBack(other.number[i]);
     }
-    std::cout << "Copy constructor" << std::endl;
+    // std::cout << "Copy constructor" << std::endl;
 }
 
 Four::~Four() noexcept { }
@@ -145,7 +147,7 @@ bool Four::lowerThan(const Four& other)
         return false;
     }
 
-    for (int i = 0; i < numberLen; ++i) {
+    for (int i = numberLen - 1; 0 <= i; --i) {
         if (other.number[i] > number[i]) {
             return true;
         }
@@ -155,7 +157,7 @@ bool Four::lowerThan(const Four& other)
 
 bool Four::lowerThanEq(const Four& other)
 {
-    return !(greaterThan(other));
+    return !(this->greaterThan(other));
 }
 
 bool Four::greaterThan(const Four& other)
@@ -169,8 +171,10 @@ bool Four::greaterThan(const Four& other)
         return true;
     }
 
-    for (int i = 0; i < numberLen; ++i) {
-        if (other.number[i] < number[i]) {
+    for (int i = numberLen - 1; 0 <= i; --i) {
+        if (number[i] < other.number[i]) {
+            return false;
+        } else if (number[i] > other.number[i]) {
             return true;
         }
     }
