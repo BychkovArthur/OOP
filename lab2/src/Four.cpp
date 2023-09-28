@@ -65,6 +65,8 @@ Four::Four(const Four& other)
     std::cout << "Copy constructor" << std::endl;
 }
 
+Four::~Four() { }
+
 
 void Four::printNubmer()
 {

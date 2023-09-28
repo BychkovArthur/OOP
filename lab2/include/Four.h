@@ -14,6 +14,8 @@ public:
     Four(const std::initializer_list<unsigned char>&);
     Four(const std::string&);
     Four(const Four&);
+    virtual ~Four();
+    
     void printNubmer();
 
     void add(const Four&);
@@ -30,7 +32,6 @@ public:
     // - noexcept, надо ли в header?
     // - virtual, надо ли в header?
     // Four(Four&&);
-    // virtual ~Four();
 private:
     std::vector<unsigned char> number;
     static inline const unsigned char correctCharacters[4] {'0', '1', '2', '3'};

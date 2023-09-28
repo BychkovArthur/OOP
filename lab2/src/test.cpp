@@ -3,28 +3,37 @@
 class Person
 {
 public:
+    static inline unsigned age{1};
+    static inline unsigned maxAge{120};     // статическая публичная переменная
     Person(std::string p_name, unsigned p_age)
     {
-        ++count;    // при создании нового объекта увеличиваем счетчик
+        ++count;
         name = p_name;
-        age = p_age;
+        if(p_age < maxAge)  // если значение не больше максимального
+            age = p_age;
     }
-    void print_count()
+    // статическая функция
+    static void print_count()
     {
         std::cout << "Created " << count << " objects" << std::endl;
     }
 private:
     std::string name;
-    unsigned age;
-    static unsigned count{};  // статическое поле - счетчик объектов Person
+    
+    static inline unsigned count{};  // статическая приватная переменная
 };
  
 int main()
 {
     Person tom{"Tom", 38};
-    Person bob{"Bob", 42};
     Person sam{"Sam", 25};
-    tom.print_count();
-    bob.print_count();
-    sam.print_count();
+    Person bob{"Bob", 42};
+    std::cout << sam.age << std::endl;
+    // обращаемся к статической функции print_count
+    Person::print_count();
+    // обращаемся к статической переменной maxAge
+    std::cout << "Max age: " << Person::maxAge << std::endl;
+    // изменяем статическую переменную maxAge
+    Person::maxAge = 110;
+    std::cout << "Max age: " << Person::maxAge << std::endl;
 }
