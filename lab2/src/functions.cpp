@@ -1,3 +1,5 @@
+#include "../include/functions.h"
+
 inline int min(const int a,const int b) {
     return a < b ? a : b;
 }
