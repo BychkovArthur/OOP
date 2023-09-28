@@ -148,8 +148,10 @@ bool Four::lowerThan(const Four& other)
     }
 
     for (int i = numberLen - 1; 0 <= i; --i) {
-        if (other.number[i] > number[i]) {
+        if (number[i] < other.number[i]) {
             return true;
+        } else if (number[i] > other.number[i]) {
+            return false;
         }
     }
     return false;
