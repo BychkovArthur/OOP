@@ -3,7 +3,6 @@
 
 // TODO
 // - мб в функции вывести inline
-// - при билде варнинги
 
 inline int min(const int a,const int b) {
     return a < b ? a : b;
@@ -53,7 +52,7 @@ Four::Four(const size_t& n, unsigned char character = 0)
         throw std::runtime_error(errorMessage);
     }
 
-    for (int i = 0; i < n; ++i) {
+    for (size_t i = 0; i < n; ++i) {
         number.pushBack(character);
     }
 }

@@ -6,7 +6,7 @@ Vector::Vector() : size(0), capacity(1), arr(new unsigned char[capacity]) { }
 
 Vector::Vector(const Vector& copy) : size(copy.size), capacity(copy.capacity), arr(new unsigned char[capacity])
 {
-    for (int i = 0; i < size; ++i) {
+    for (unsigned int i = 0; i < size; ++i) {
         arr[i] = copy.arr[i];
     }
 }
@@ -25,7 +25,7 @@ Vector& Vector::operator=(const Vector& copy)
         size = copy.size;
         capacity = copy.capacity;
         arr = new unsigned char[capacity];
-        for (int i = 0; i < size; ++i) {
+        for (unsigned int i = 0; i < size; ++i) {
             arr[i] = copy.arr[i];
         }
     }
@@ -54,7 +54,7 @@ void Vector::pushBack(const unsigned char character)
     } else {
         capacity *= 2;
         unsigned char* new_arr = new unsigned char[capacity];
-        for (int i = 0; i < size; ++i) {
+        for (unsigned int i = 0; i < size; ++i) {
             new_arr[i] = arr[i];
         }
         new_arr[size] = character;
@@ -87,7 +87,7 @@ Vector::~Vector() {delete[] arr; }
 
 void Vector::print() const
 {
-    for (int i = 0; i < size; ++i) {
+    for (unsigned int i = 0; i < size; ++i) {
         std::cout << arr[i] << " ";
     }
     std::cout << std::endl;
