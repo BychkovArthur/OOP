@@ -5,40 +5,29 @@
 // TODO
 // - move-семантика для переноса данных в векторе
 
-Vector::Vector()
+Vector::Vector() : size(0), capacity(1), arr(new unsigned char[capacity])
 {
     ++count;
     id = count;
-    std::cout << "Создан по-умолчанию: " << id << std::endl;
-
-    size = 0;
-    capacity = 1;
-    arr = new unsigned char[capacity];
+    std::cout << "(vct) Создан по-умолчанию: (конструктор) " << id << std::endl;
 }
 
-Vector::Vector(const Vector& copy)
+Vector::Vector(const Vector& copy) : size(copy.size), capacity(copy.capacity), arr(new unsigned char[capacity])
 {
     ++count;
     id = count;
-    std::cout << "Данные из " << copy.id << " скопированы в новый " << id << std::endl;
+    std::cout << "(vct) Данные из " << copy.id << " скопированы в новый *(конструктор) " << id << std::endl;
 
-    size = copy.size;
-    capacity = copy.capacity;
-    arr = new unsigned char[capacity];
     for (int i = 0; i < size; ++i) {
         arr[i] = copy.arr[i];
     }
 }
 
-Vector::Vector(Vector&& moved)
+Vector::Vector(Vector&& moved) : size(moved.size), capacity(moved.capacity), arr(moved.arr)
 {
     ++count;
     id = count;
-    std::cout << "Данные из " << moved.id << " ПЕРЕНЕСЕНЫ в новый " << id << std::endl;
-
-    size = moved.size;
-    capacity = moved.capacity;
-    arr = moved.arr;
+    std::cout << "(vct) Данные из " << moved.id << " ПЕРЕНЕСЕНЫ в новый (конструктор) " << id << std::endl;
 
     moved.size = 0;
     moved.capacity = 1;
@@ -47,7 +36,7 @@ Vector::Vector(Vector&& moved)
 
 Vector& Vector::operator=(const Vector& copy)
 {
-    std::cout << "Вызвано copy " << id << " = " << copy.id << std::endl;
+    std::cout << "(vct) Вызвано copy " << id << " = " << copy.id << std::endl;
 
     if (this != &copy) {
         delete[] arr;
@@ -63,7 +52,7 @@ Vector& Vector::operator=(const Vector& copy)
 
 Vector& Vector::operator=(Vector&& moved)
 {
-    std::cout << "Вызвано moved " << id << " = " << moved.id << std::endl;
+    std::cout << "(vct) Вызвано moved " << id << " = " << moved.id << std::endl;
     if (this != &moved) {
         delete[] arr;
         size = moved.size;
@@ -77,7 +66,7 @@ Vector& Vector::operator=(Vector&& moved)
     return *this;
 }
 
-void Vector::pushBack(unsigned char character) 
+void Vector::pushBack(const unsigned char character) 
 {
     if (size + 1 <= capacity) {
         arr[size] = character;
@@ -139,19 +128,43 @@ unsigned int Vector::getSize() const
 //     for (int i = 0; i < 10; ++i) {
 //         v1.pushBack('0' + i);
 //     }
+//     // Перенос конструктором копирования
 //     Vector v2(v1);
-
+//     v1.pushBack('1');
+//     v2.pushBack('2');
 //     std::cout << "V1: ";
 //     v1.print();
 //     std::cout << "V2: ";
 //     v2.print();
 
+//     // Перенос через std::move
 //     std::cout << "\n\n\n";
 //     Vector v3 = std::move(v2);
 //     v2.pushBack('#');
-
 //     std::cout << "V3: ";
 //     v3.print();
 //     std::cout << "V2: ";
 //     v2.print();
+
+//     // Перенос copy assigment
+//     std::cout << "\n\n\n\n";
+//     Vector v4;
+//     for (int i = 0; i < 5; ++i) {
+//         v4.pushBack('a' + i);
+//     }
+//     std::cout << "V4: ";
+//     v4.print();
+//     v4 = v1;
+//     std::cout << "V4: ";
+//     v4.print();
+//     std::cout << "V1: ";
+//     v1.print();
+
+//     // move assigment operator
+//     std::cout << "\n\n\n\n";
+//     v4 = std::move(v1);
+//     std::cout << "V4: ";
+//     v4.print();
+//     std::cout << "V1: ";
+//     v1.print();
 // }

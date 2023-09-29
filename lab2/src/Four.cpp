@@ -140,15 +140,21 @@ Four::Four(Four&& moved)
 Four& Four::operator=(const Four& copy)
 {
     std::cout << "Вызов copy " << id << " = " << copy.id << std::endl;
-    
-    number = copy.number;
+
+    if (&copy != this) {
+        number = copy.number;
+    }
+
+    return *this;
 }
 
 Four& Four::operator=(Four&& moved)
 {
     std::cout << "Вызов moved " << id << " = " << moved.id << std::endl;
-
-    number = std::move(moved.number); // Мб переинициализировать moved.number
+    if (&moved != this) {
+        number = std::move(moved.number); // Мб переинициализировать moved.number
+    }
+    return *this;
 }
 
 Four::~Four() noexcept { std::cout << "DELETED: " << id << std::endl; --count;  }
@@ -302,4 +308,44 @@ bool Four::correctCharacter(const unsigned char character)
         }
     }
     return false;
+}
+
+int main() 
+{
+    // default and copy constructors -------- OK
+    Four f1("31001");
+    Four f2(f1);
+    Four f3("1");
+
+    f1.add(f3);
+    f2.subtract(f3);
+    f1.print();
+    f2.print();
+
+    // move constructor ----------- ok
+    std::cout << "\n\n\n\n";
+    Four f4(std::move(f1)); // f1 now eq 31002
+    f1.print();
+    f4.print();
+
+    std::cout << "\n\n\n";
+    // copy assigment
+    f4 = f2;
+    f2.print();
+    f4.print();
+
+    std::cout << "\n\n\n";
+    // move assigment operator
+    Four f5("333");
+    f5 = std::move(f2); // f2 now eq 31000
+    f2.print();
+    f5.print();
+
+
+    // TEST
+    std::cout << "\n\n\n\n";
+    Four f6("12301230123");
+    f6 = Four("0"); // Four(0) удалется в этой же строке
+
+    std::cout << "\n\nEND\n\n\n";
 }
