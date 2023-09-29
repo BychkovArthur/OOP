@@ -1,46 +1,6 @@
-#include "../include/Four.h"
+#include "Four.h"
+#include "functions.h"
 #include <iostream>
-
-// TODO
-// - мб в функции вывести inline
-
-inline int min(const int a,const int b) {
-    return a < b ? a : b;
-}
-
-inline int max(const int a,const int b) {
-    return a > b ? a : b;
-}
-
-inline unsigned int charToNum(unsigned char character)
-{
-    return character - (unsigned char) '0';
-}
-
-inline unsigned char numToChar(unsigned int num)
-{
-    return (unsigned char) '0' + num;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Four::Four() { number.pushBack((unsigned char) '0'); }
 

@@ -1,7 +1,7 @@
 #ifndef FOUR_CLASS_H
 #define FOUR_CLASS_H
 
-#include "../include/Vector.h"
+#include "Vector.h"
 #include <stdlib.h>
 #include <initializer_list>
 #include <string>
