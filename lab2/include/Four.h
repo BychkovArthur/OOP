@@ -7,11 +7,6 @@
 #include <string>
 #include <vector>
 
-
-    // TODO:
-    // - noexcept, надо ли в header?
-    // - virtual, надо ли в header?
-
 class Four
 {
 public:
