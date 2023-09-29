@@ -4,7 +4,6 @@
 
 // TODO
 // - move-семантика для переноса данных в векторе
-// - добавить operator=
 
 Vector::Vector()
 {
@@ -135,24 +134,24 @@ unsigned int Vector::getSize() const
     return size;
 }
 
-int main() {
-    Vector v1;
-    for (int i = 0; i < 10; ++i) {
-        v1.pushBack('0' + i);
-    }
-    Vector v2(v1);
+// int main() {
+//     Vector v1;
+//     for (int i = 0; i < 10; ++i) {
+//         v1.pushBack('0' + i);
+//     }
+//     Vector v2(v1);
 
-    std::cout << "V1: ";
-    v1.print();
-    std::cout << "V2: ";
-    v2.print();
+//     std::cout << "V1: ";
+//     v1.print();
+//     std::cout << "V2: ";
+//     v2.print();
 
-    std::cout << "\n\n\n";
-    Vector v3 = std::move(v2);
-    v2.pushBack('#');
+//     std::cout << "\n\n\n";
+//     Vector v3 = std::move(v2);
+//     v2.pushBack('#');
 
-    std::cout << "V3: ";
-    v3.print();
-    std::cout << "V2: ";
-    v2.print();
-}
+//     std::cout << "V3: ";
+//     v3.print();
+//     std::cout << "V2: ";
+//     v2.print();
+// }

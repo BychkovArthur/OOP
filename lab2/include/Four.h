@@ -7,6 +7,11 @@
 #include <string>
 #include <vector>
 
+
+    // TODO:
+    // - noexcept, надо ли в header?
+    // - virtual, надо ли в header?
+
 class Four
 {
 public:
@@ -15,6 +20,9 @@ public:
     Four(const std::initializer_list<unsigned char>&);
     Four(const std::string&);
     Four(const Four&);
+    Four(Four&&);
+    Four& operator=(const Four&);
+    Four& operator=(Four&&);
     virtual ~Four() noexcept;
 
     void print();
@@ -28,16 +36,14 @@ public:
     bool greaterThanEq(const Four&);
     bool equal(const Four& other);
 
-
-    // TODO:
-    // - noexcept, надо ли в header?
-    // - virtual, надо ли в header?
-    // Four(Four&&);
 private:
     Vector number;
     static inline const unsigned char correctCharacters[4] {'0', '1', '2', '3'};
     static const unsigned int MAX_VALUE = 4;
     bool correctCharacter(const unsigned char);
+    
+    static inline unsigned int count = 0;
+    unsigned int id;
 };
 
 #endif // FOUR_CLASS_H

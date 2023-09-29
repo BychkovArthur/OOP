@@ -28,16 +28,40 @@ inline unsigned char numToChar(unsigned int num)
     return (unsigned char) '0' + num;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Four::Four()
 {
-    // std::cout << "Default constructor" << std::endl;
+    ++count;
+    id = count;
+    std::cout << "Default constructor " << id << std::endl;
     number.pushBack((unsigned char) '0');
 }
 
 
 Four::Four(const size_t& n, unsigned char character = 0)
 {
-    // std::cout << "Repeating character constructor" << std::endl;
+    ++count;
+    id = count;
+    std::cout << "Repeating character constructor " << id << std::endl;
 
     if (!correctCharacter(character)) {
         std::string errorMessage = "Incorrect character: ";
@@ -53,7 +77,9 @@ Four::Four(const size_t& n, unsigned char character = 0)
 
 Four::Four(const std::initializer_list<unsigned char>& initLst)
 {
-    // std::cout << "Initializer_List constructor" << std::endl;
+    ++count;
+    id = count;
+    std::cout << "Initializer_List constructor " << id <<  std::endl;
 
     for(unsigned char character : initLst) {
         if (!correctCharacter(character)) {
@@ -70,9 +96,10 @@ Four::Four(const std::initializer_list<unsigned char>& initLst)
 
 
 Four::Four(const std::string& other)
-{ // mb without copy
-    
+{ // Может быть, изминить инициализацию
 
+    ++count;
+    id = count;
     for(unsigned char character : other) {
         if (!correctCharacter(character)) {
             std::string errorMessage = "Incorrect character: ";
@@ -81,7 +108,7 @@ Four::Four(const std::string& other)
         }
     }
 
-    // std::cout << "String constructor" << std::endl;
+    std::cout << "String constructor " << id << std::endl;
 
     for (int i =  other.size() - 1; 0 <= i; --i) {
         number.pushBack(other[i]);
@@ -90,14 +117,41 @@ Four::Four(const std::string& other)
 
 
 Four::Four(const Four& other)
-{ // mb without copy
-    for (int i = 0; i < other.number.getSize(); ++i) {
-        number.pushBack(other.number[i]);
-    }
-    // std::cout << "Copy constructor" << std::endl;
+{
+    ++count;
+    id = count;
+
+    number = other.number;
+
+    std::cout << "Copy constructor " << id <<  std::endl;
 }
 
-Four::~Four() noexcept { }
+Four::Four(Four&& moved)
+{
+    ++count;
+    id = count;
+
+    number = std::move(moved.number); // Мб переинициализировать moved.number
+
+    std::cout << "Move copy constructor " << id << std::endl;
+    
+}
+
+Four& Four::operator=(const Four& copy)
+{
+    std::cout << "Вызов copy " << id << " = " << copy.id << std::endl;
+    
+    number = copy.number;
+}
+
+Four& Four::operator=(Four&& moved)
+{
+    std::cout << "Вызов moved " << id << " = " << moved.id << std::endl;
+
+    number = std::move(moved.number); // Мб переинициализировать moved.number
+}
+
+Four::~Four() noexcept { std::cout << "DELETED: " << id << std::endl; --count;  }
 
 
 void Four::print()
