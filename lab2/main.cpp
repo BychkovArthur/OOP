@@ -1,20 +1,9 @@
-#include "../include/Four.h"
+#include "Four.h"
+#include "functions.h"
+#include "Constants.h"
 #include <iostream>
 #include <unordered_map>
-std::unordered_map<std::string, unsigned int> OPERATORS = 
-{
-    {"+", 0},
-    {"-", 1},
-    {">", 2},
-    {"<", 3},
-    {">=", 4},
-    {"<=", 5},
-    {"=", 6},
-};
 
-inline std::string boolToStr(bool value) {
-    return value ? "True" : "False";
-}
 
 int main() {
     while (true)
@@ -46,7 +35,7 @@ int main() {
                 number1.subtract(number2);
                 number1.print();
                 break;
-            case 22:
+            case 2:
                 std::cout << boolToStr(number1.greaterThan(number2)) << std::endl;
                 break;
             case 3:
