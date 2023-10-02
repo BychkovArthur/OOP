@@ -21,29 +21,33 @@ Vector::Vector(Vector&& moved) : size(moved.size), capacity(moved.capacity), arr
 Vector& Vector::operator=(const Vector& copy)
 {
     if (this != &copy) {
-        delete[] arr;
-        size = copy.size;
-        capacity = copy.capacity;
-        arr = new unsigned char[capacity];
-        for (unsigned int i = 0; i < size; ++i) {
-            arr[i] = copy.arr[i];
-        }
+        return *this;
+    }
+    
+    delete[] arr;
+    size = copy.size;
+    capacity = copy.capacity;
+    arr = new unsigned char[capacity];
+    for (unsigned int i = 0; i < size; ++i) {
+        arr[i] = copy.arr[i];
     }
     return *this;
 }
 
 Vector& Vector::operator=(Vector&& moved)
 {
-    if (this != &moved) {
-        delete[] arr;
-        size = moved.size;
-        capacity = moved.capacity;
-        arr = moved.arr;
-
-        moved.size = 0;
-        moved.capacity = 1;
-        moved.arr = new unsigned char[capacity];
+    if (this == &moved) {
+        return *this;
     }
+
+    delete[] arr;
+    size = moved.size;
+    capacity = moved.capacity;
+    arr = moved.arr;
+
+    moved.size = 0;
+    moved.capacity = 1;
+    moved.arr = new unsigned char[capacity];
     return *this;
 }
 

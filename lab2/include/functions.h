@@ -1,15 +1,7 @@
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H
+#pragma once
 
+#include "Four.h"
 #include <string>
-
-inline int min(const int a,const int b) {
-    return a < b ? a : b;
-}
-
-inline int max(const int a,const int b) {
-    return a > b ? a : b;
-}
 
 inline unsigned int charToNum(unsigned char character)
 {
@@ -25,4 +17,6 @@ inline std::string boolToStr(bool value) {
     return value ? "True" : "False";
 }
 
-#endif // FUNCTIONS_H
+void printStartInfo();
+
+void printResultOfAction(std::string&, Four&, Four&);

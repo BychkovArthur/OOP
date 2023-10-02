@@ -1,5 +1,4 @@
-#ifndef FOUR_CLASS_H
-#define FOUR_CLASS_H
+#pragma once
 
 #include "Vector.h"
 #include <stdlib.h>
@@ -18,9 +17,6 @@ public:
     Four(Four&&);
     virtual ~Four() noexcept;
 
-    Four& operator=(const Four&);
-    Four& operator=(Four&&);
-
     void add(const Four&);
     void subtract(const Four&);
 
@@ -32,11 +28,12 @@ public:
 
     void print();
 
+    Four& operator=(const Four&);
+    Four& operator=(Four&&);
+
 private:
     Vector number;
     static inline const unsigned char correctCharacters[4] {'0', '1', '2', '3'};
     static const unsigned int MAX_VALUE = 4;
     bool correctCharacter(const unsigned char);
 };
-
-#endif // FOUR_CLASS_H

@@ -1,8 +1,11 @@
 #include "Four.h"
 #include "functions.h"
 #include <iostream>
+#include <algorithm>
 
-Four::Four() { number.pushBack((unsigned char) '0'); }
+Four::Four() { 
+    number.pushBack((unsigned char) '0'); 
+}
 
 Four::Four(const size_t& n, unsigned char character = 0)
 {
@@ -55,24 +58,6 @@ Four::~Four() noexcept { }
 
 
 
-Four& Four::operator=(const Four& copy)
-{
-    if (&copy != this) {
-        number = copy.number;
-    }
-    return *this;
-}
-
-Four& Four::operator=(Four&& moved)
-{
-    if (&moved != this) {
-        number = std::move(moved.number);
-    }
-    return *this;
-}
-
-
-
 void Four::add(const Four& other)
 {
     const int numberLen = number.getSize();
@@ -80,7 +65,7 @@ void Four::add(const Four& other)
 
     int remainder = 0;
 
-    for (int i = 0; i < max(numberLen, otherNumberLen); ++i) {
+    for (int i = 0; i < std::max(numberLen, otherNumberLen); ++i) {
         unsigned int num = i < numberLen ? charToNum(number[i]) : 0;
         unsigned int otherNum = i < otherNumberLen ? charToNum(other.number[i]) : 0;
         unsigned int sum =  num + otherNum + remainder;
@@ -111,7 +96,7 @@ void Four::subtract(const Four& other)
 
     int remainder = 0;
 
-    for (int i = 0; i < max(numberLen, otherNumberLen); ++i) {
+    for (int i = 0; i < std::max(numberLen, otherNumberLen); ++i) {
         int num = i < numberLen ? charToNum(number[i]) : 0;
         int otherNum = i < otherNumberLen ? charToNum(other.number[i]) : 0;
         unsigned int difference;
@@ -225,4 +210,22 @@ bool Four::correctCharacter(const unsigned char character)
         }
     }
     return false;
+}
+
+
+
+Four& Four::operator=(const Four& copy)
+{
+    if (&copy != this) {
+        number = copy.number;
+    }
+    return *this;
+}
+
+Four& Four::operator=(Four&& moved)
+{
+    if (&moved != this) {
+        number = std::move(moved.number);
+    }
+    return *this;
 }

@@ -1,5 +1,5 @@
 #include "Four.h"
-#include "Constants.h"
+#include "Definitions.h"
 #include <gtest/gtest.h>
 #include <tuple>
 
@@ -56,13 +56,13 @@ TEST_P(FourNumberArithmeticParametrTests, AddAndSubtractTests) {
     bool result;
 
     // act
-    switch (OPERATORS[op])
+    switch (GET_OPERATOR_ID[op])
     {
-    case 0:
+    case OPERETOR_ID::addOperator:
         num1.add(num2);
         result = num1.equal(resultNumber);
         break;
-    case 1:
+    case OPERETOR_ID::subtractOperator:
         num1.subtract(num2);
         result = num1.equal(resultNumber);
         break;
@@ -127,21 +127,21 @@ TEST_P(FourNumberComparisonOperatorsParametrTests, ComparisonOperatorsTests) {
 
     // act
     bool correctAnswerBool = correctAnswerStr == "1" ? 1 : 0;
-    switch (OPERATORS[op])
+    switch (GET_OPERATOR_ID[op])
     {
-    case 2:
+    case OPERETOR_ID::greaterThanOperator:
         result = num1.greaterThan(num2);
         break;
-    case 3:
+    case OPERETOR_ID::lowerTharOperator:
         result = num1.lowerThan(num2);
         break;
-    case 4:
+    case OPERETOR_ID::greaterThanEqOperator:
         result = num1.greaterThanEq(num2);
         break;
-    case 5:
+    case OPERETOR_ID::lowerTharEqOperator:
         result = num1.lowerThanEq(num2);
         break;
-    case 6:
+    case OPERETOR_ID::equalOperator:
         result = num1.equal(num2);
         break;
     }

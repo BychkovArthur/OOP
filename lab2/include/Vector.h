@@ -1,5 +1,4 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 
 class Vector
 {
@@ -21,5 +20,3 @@ private:
     unsigned int capacity;
     unsigned char* arr;
 };
-
-#endif // VECTOR_H
