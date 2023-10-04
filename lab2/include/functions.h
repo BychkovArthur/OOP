@@ -13,10 +13,6 @@ inline unsigned char numToChar(unsigned int num)
     return (unsigned char) '0' + num;
 }
 
-inline std::string boolToStr(bool value) {
-    return value ? "True" : "False";
-}
-
 void printStartInfo();
 
 void printResultOfAction(std::string&, Four&, Four&);

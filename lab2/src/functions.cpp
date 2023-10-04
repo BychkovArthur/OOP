@@ -5,7 +5,7 @@
 
 void printStartInfo() {
     std::cout << "Enter <number> <number> <operator> ( ";
-    for (int i = 0; i < OPERATORS_COUNT - 1; ++i) {
+    for (size_t i = 0; i < OPERATORS_COUNT - 1; ++i) {
         std::cout << OPERATORS[i] << ", ";
     }
     std::cout << OPERATORS[OPERATORS_COUNT - 1];
@@ -13,6 +13,8 @@ void printStartInfo() {
 }
 
 void printResultOfAction(std::string& op, Four& number1, Four& number2) {
+        std::cout << "Result: ";
+
         switch (GET_OPERATOR_ID[op])
         {
             case OPERETOR_ID::addOperator:
@@ -24,19 +26,19 @@ void printResultOfAction(std::string& op, Four& number1, Four& number2) {
                 number1.print();
                 break;
             case OPERETOR_ID::greaterThanOperator:
-                std::cout << boolToStr(number1.greaterThan(number2)) << std::endl;
+                std::cout << std::boolalpha << number1.greaterThan(number2) << std::endl;
                 break;
             case OPERETOR_ID::lowerTharOperator:
-                std::cout << boolToStr(number1.lowerThan(number2)) << std::endl;
+                std::cout << std::boolalpha << number1.lowerThan(number2) << std::endl;
                 break;
             case OPERETOR_ID::greaterThanEqOperator:
-                std::cout << boolToStr(number1.greaterThanEq(number2)) << std::endl;
+                std::cout << std::boolalpha << number1.greaterThanEq(number2) << std::endl;
                 break;
             case OPERETOR_ID::lowerTharEqOperator:
-                std::cout << boolToStr(number1.lowerThanEq(number2)) << std::endl;
+                std::cout << std::boolalpha << number1.lowerThanEq(number2) << std::endl;
                 break;
             case OPERETOR_ID::equalOperator:
-                std::cout << boolToStr(number1.equal(number2)) << std::endl;
+                std::cout << std::boolalpha << number1.equal(number2) << std::endl;
                 break;
         }
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include <cstddef>
 
 class Vector
 {
@@ -11,12 +12,12 @@ public:
     void pushBack(unsigned char);
     void popBack();
     unsigned char& operator[](unsigned int) const;
-    unsigned int getSize() const;
+    size_t getSize() const;
     ~Vector();
     void print() const;
     
 private:
-    unsigned int size;
-    unsigned int capacity;
+    size_t size;
+    size_t capacity;
     unsigned char* arr;
 };

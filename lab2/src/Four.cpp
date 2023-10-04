@@ -10,9 +10,7 @@ Four::Four() {
 Four::Four(const size_t& n, unsigned char character = 0)
 {
     if (!correctCharacter(character)) {
-        std::string errorMessage = "Incorrect character: ";
-        errorMessage += character;
-        throw std::runtime_error(errorMessage);
+        throw std::invalid_argument("Incorrect character: " + character);
     }
 
     for (size_t i = 0; i < n; ++i) {
@@ -22,13 +20,7 @@ Four::Four(const size_t& n, unsigned char character = 0)
 
 Four::Four(const std::initializer_list<unsigned char>& initLst)
 {
-    for(unsigned char character : initLst) {
-        if (!correctCharacter(character)) {
-            std::string errorMessage = "Incorrect character: ";
-            errorMessage += character;
-            throw std::runtime_error(errorMessage);
-        }
-    }
+    isCorrectCharacters(initLst);
 
     for (const unsigned char* ptr = initLst.end() - 1; initLst.begin() <= ptr; --ptr) {
         number.pushBack(*ptr);
@@ -37,15 +29,9 @@ Four::Four(const std::initializer_list<unsigned char>& initLst)
 
 Four::Four(const std::string& other)
 {
-    for(unsigned char character : other) {
-        if (!correctCharacter(character)) {
-            std::string errorMessage = "Incorrect character: ";
-            errorMessage += character;
-            throw std::runtime_error(errorMessage);
-        }
-    }
+    isCorrectCharacters(other);
 
-    for (int i =  other.size() - 1; 0 <= i; --i) {
+    for (int i = other.size() - 1; 0 <= i; --i) {
         number.pushBack(other[i]);
     }
 }
@@ -60,12 +46,11 @@ Four::~Four() noexcept { }
 
 void Four::add(const Four& other)
 {
-    const int numberLen = number.getSize();
-    const int otherNumberLen = other.number.getSize();
-
+    const size_t numberLen = number.getSize();
+    const size_t otherNumberLen = other.number.getSize();
     int remainder = 0;
 
-    for (int i = 0; i < std::max(numberLen, otherNumberLen); ++i) {
+    for (size_t i = 0; i < std::max(numberLen, otherNumberLen); ++i) {
         unsigned int num = i < numberLen ? charToNum(number[i]) : 0;
         unsigned int otherNum = i < otherNumberLen ? charToNum(other.number[i]) : 0;
         unsigned int sum =  num + otherNum + remainder;
@@ -83,20 +68,21 @@ void Four::add(const Four& other)
     if (remainder) {
         number.pushBack(numToChar(remainder));
     }
+
 }
 
 void Four::subtract(const Four& other)
 {
     if (this->lowerThan(other)) {
-        throw std::runtime_error("The first number must be greater than or equal to the second");
+        throw std::invalid_argument("The first number must be greater than or equal to the second");
     }
 
-    const int numberLen = number.getSize();
-    const int otherNumberLen = other.number.getSize();
+    const size_t numberLen = number.getSize();
+    const size_t otherNumberLen = other.number.getSize();
 
     int remainder = 0;
 
-    for (int i = 0; i < std::max(numberLen, otherNumberLen); ++i) {
+    for (size_t i = 0; i < std::max(numberLen, otherNumberLen); ++i) {
         int num = i < numberLen ? charToNum(number[i]) : 0;
         int otherNum = i < otherNumberLen ? charToNum(other.number[i]) : 0;
         unsigned int difference;
@@ -123,20 +109,16 @@ void Four::subtract(const Four& other)
 
 bool Four::lowerThan(const Four& other)
 {
-    const int numberLen = number.getSize();
-    const int otherNumberLen = other.number.getSize();
+    const size_t numberLen = number.getSize();
+    const size_t otherNumberLen = other.number.getSize();
 
-    if (otherNumberLen > numberLen) {
-        return true;
-    } else if (otherNumberLen < numberLen) {
-        return false;
+    if (numberLen != otherNumberLen) {
+        return numberLen < otherNumberLen;
     }
 
     for (int i = numberLen - 1; 0 <= i; --i) {
-        if (number[i] < other.number[i]) {
-            return true;
-        } else if (number[i] > other.number[i]) {
-            return false;
+        if (number[i] != other.number[i]) {
+            return number[i] < other.number[i];
         }
     }
     return false;
@@ -144,20 +126,16 @@ bool Four::lowerThan(const Four& other)
 
 bool Four::greaterThan(const Four& other)
 {
-    const int numberLen = number.getSize();
-    const int otherNumberLen = other.number.getSize();
+    const size_t numberLen = number.getSize();
+    const size_t otherNumberLen = other.number.getSize();
 
-    if (otherNumberLen > numberLen) {
-        return false;
-    } else if (otherNumberLen < numberLen) {
-        return true;
+    if (numberLen != otherNumberLen) {
+        return numberLen > otherNumberLen;
     }
 
     for (int i = numberLen - 1; 0 <= i; --i) {
-        if (number[i] < other.number[i]) {
-            return false;
-        } else if (number[i] > other.number[i]) {
-            return true;
+        if (number[i] != other.number[i]) {
+            return number[i] > other.number[i];
         }
     }
     return false;
@@ -174,14 +152,14 @@ bool Four::greaterThanEq(const Four& other) {
 
 bool Four::equal(const Four& other)
 {
-    const int numberLen = number.getSize();
-    const int otherNumberLen = other.number.getSize();
+    const size_t numberLen = number.getSize();
+    const size_t otherNumberLen = other.number.getSize();
 
     if (otherNumberLen != numberLen) {
         return false;
     }
 
-    for (int i = 0; i < numberLen; ++i) {
+    for (size_t i = 0; i < numberLen; ++i) {
         if (number[i] != other.number[i]) {
             return false;
         }
@@ -212,6 +190,22 @@ bool Four::correctCharacter(const unsigned char character)
     return false;
 }
 
+
+void Four::isCorrectCharacters(const std::initializer_list<unsigned char>& initLst) {
+    for(unsigned char character : initLst) {
+        if (!correctCharacter(character)) {
+            throw std::invalid_argument("Incorrect character: " + character); // Текст не пишет
+        }
+    }
+}
+
+void Four::isCorrectCharacters(const std::string& other) {
+    for(unsigned char character : other) {
+        if (!correctCharacter(character)) {
+            throw std::invalid_argument("Incorrect character: " + character);
+        }
+    }
+}
 
 
 Four& Four::operator=(const Four& copy)

@@ -24,15 +24,14 @@ int main() {
         if (op == "q") {
             break;
         }
-        
+
         if (GET_OPERATOR_ID.count(op) == 0) {
-            throw std::runtime_error("Incorrect operator");
+            throw std::invalid_argument("Incorrect operator");
         }
 
         Four number1(num1);
         Four number2(num2);
 
-        std::cout << "Result: ";
         printResultOfAction(op, number1, number2);
 
         std::cout << std::endl;

@@ -97,7 +97,7 @@ void Vector::print() const
     std::cout << std::endl;
 }
 
-unsigned int Vector::getSize() const
+size_t Vector::getSize() const
 {
     return size;
 }

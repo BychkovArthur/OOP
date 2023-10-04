@@ -36,4 +36,6 @@ private:
     static inline const unsigned char correctCharacters[4] {'0', '1', '2', '3'};
     static const unsigned int MAX_VALUE = 4;
     bool correctCharacter(const unsigned char);
+    void isCorrectCharacters(const std::initializer_list<unsigned char>&);
+    void isCorrectCharacters(const std::string&);
 };
