@@ -16,3 +16,5 @@ inline unsigned char numToChar(unsigned int num)
 void printStartInfo();
 
 void printResultOfAction(std::string&, Four&, Four&);
+
+void runApplication();

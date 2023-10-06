@@ -194,7 +194,7 @@ bool Four::correctCharacter(const unsigned char character)
 void Four::isCorrectCharacters(const std::initializer_list<unsigned char>& initLst) {
     for(unsigned char character : initLst) {
         if (!correctCharacter(character)) {
-            throw std::invalid_argument("Incorrect character: " + character); // Текст не пишет
+            throw std::invalid_argument("Incorrect character: " + std::string(1, character));
         }
     }
 }
@@ -202,7 +202,7 @@ void Four::isCorrectCharacters(const std::initializer_list<unsigned char>& initL
 void Four::isCorrectCharacters(const std::string& other) {
     for(unsigned char character : other) {
         if (!correctCharacter(character)) {
-            throw std::invalid_argument("Incorrect character: " + character);
+            throw std::invalid_argument("Incorrect character: " + std::string(1, character));
         }
     }
 }

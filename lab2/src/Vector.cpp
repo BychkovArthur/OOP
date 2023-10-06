@@ -14,13 +14,13 @@ Vector::Vector(const Vector& copy) : size(copy.size), capacity(copy.capacity), a
 Vector::Vector(Vector&& moved) : size(moved.size), capacity(moved.capacity), arr(moved.arr)
 {
     moved.size = 0;
-    moved.capacity = 1;
-    moved.arr = new unsigned char[capacity]; // Чтобы при удалении moved не было double free
+    moved.capacity = 0;
+    moved.arr = nullptr;
 }
 
 Vector& Vector::operator=(const Vector& copy)
 {
-    if (this != &copy) {
+    if (this == &copy) {
         return *this;
     }
     
@@ -46,8 +46,8 @@ Vector& Vector::operator=(Vector&& moved)
     arr = moved.arr;
 
     moved.size = 0;
-    moved.capacity = 1;
-    moved.arr = new unsigned char[capacity];
+    moved.capacity = 0;
+    moved.arr = nullptr;
     return *this;
 }
 
@@ -79,7 +79,7 @@ void Vector::popBack()
     arr[size] = (unsigned char) 0;
 }
 
-unsigned char& Vector::operator[](unsigned int index) const
+unsigned char& Vector::operator[](unsigned int index)
 {
     if (!(0 <= index && index < size)) {
         throw std::range_error("Index out of range");
@@ -87,7 +87,15 @@ unsigned char& Vector::operator[](unsigned int index) const
     return arr[index];
 }
 
-Vector::~Vector() {delete[] arr; }
+const unsigned char& Vector::operator[](unsigned int index) const
+{
+    if (!(0 <= index && index < size)) {
+        throw std::range_error("Index out of range");
+    }
+    return arr[index];
+}
+
+Vector::~Vector() { delete[] arr; }
 
 void Vector::print() const
 {
