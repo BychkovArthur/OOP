@@ -1,6 +1,7 @@
 #include <vector>
 
 #include "../include/Pentagon.hpp"
+#include "../include/PentagonValidator.hpp"
 #include "../include/Rhombus.hpp"
 #include "../include/Trapezoid.hpp"
 
@@ -24,6 +25,15 @@ int main() {
     Point a3(58.7788, -80.9017);
     Point a4(-58.778, -80.9017);
     Point a5(-95.10565, 30.9017);
+    vector<Point> vpoints;
+    vpoints.push_back(a1);
+    vpoints.push_back(a2);
+    vpoints.push_back(a3);
+    vpoints.push_back(a4);
+    vpoints.push_back(a5);
+
+    PentagonValidator* pval = new PentagonValidator;
+    pval->isValid(vpoints);
     Pentagon pent(a1, a2, a3, a4, a5);
 
     figures[0] = &t1;
@@ -34,6 +44,8 @@ int main() {
         cout << static_cast<double>(*figures[i]) << endl;
         cout << *figures[i] << endl;
     }
+
+    // cout << "Types are equal: " << (typeid(figures) == typeid(t1)) << endl;
 
     // for (int i = 0; i < 2; ++i) {
     //     cin >> *figures[i];

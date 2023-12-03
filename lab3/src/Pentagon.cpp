@@ -15,6 +15,8 @@ Pentagon::Pentagon(Point first, Point second, Point third, Point fourth, Point f
 Pentagon::Pentagon(Point _vertices[numberOfVertices])
     : Pentagon(_vertices[0], _vertices[1], _vertices[2], _vertices[3], _vertices[4]) {}
 
+size_t Pentagon::getNumberOfVertices() { return numberOfVertices; }
+
 Point Pentagon::getGeometricCenter() const {
     Point geometricCenter;
 

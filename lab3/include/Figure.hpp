@@ -8,8 +8,10 @@ class Figure {
 
    public:
     Figure() = default;
+
     virtual Point getGeometricCenter() const = 0;
     virtual operator double() const = 0;
+
     virtual void print(std::ostream&) const = 0;
     virtual void read(std::istream&) = 0;
 

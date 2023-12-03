@@ -6,7 +6,7 @@ class Pentagon : public Figure {
     friend std::istream& operator>>(std::istream&, Pentagon&);
 
    private:
-    static const unsigned int numberOfVertices = 5;
+    static const size_t numberOfVertices = 5;
 
     Point vertices[numberOfVertices];
 
@@ -17,6 +17,7 @@ class Pentagon : public Figure {
     Pentagon(Point, Point, Point, Point, Point);
     explicit Pentagon(Point[numberOfVertices]);
 
+    static size_t getNumberOfVertices();
     Point getGeometricCenter() const override;
     operator double() const override;
 
