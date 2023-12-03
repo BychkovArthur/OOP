@@ -34,6 +34,8 @@ void Trapezoid::calcSidesLength() {
     biggerBaseLength = calcLength(vertices[2], vertices[3]);
 }
 
+size_t Trapezoid::getNumberOfVertices() { return numberOfVertices; }
+
 Point Trapezoid::getGeometricCenter() const {
     Point geometricCenter;
     geometricCenter.x = (vertices[0].x + vertices[1].x) / 2;

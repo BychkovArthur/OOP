@@ -6,7 +6,7 @@ class Trapezoid : public Figure {
     friend std::istream& operator>>(std::istream&, Trapezoid&);
 
    private:
-    static const unsigned int numberOfVertices = 4;
+    static const size_t numberOfVertices = 4;
 
     double height;
     double smallerBaseLength;
@@ -23,7 +23,7 @@ class Trapezoid : public Figure {
     explicit Trapezoid(Point[numberOfVertices]);
     Trapezoid(Point, Point, Point, Point);
 
+    static size_t getNumberOfVertices();
     Point getGeometricCenter() const override;
-
     operator double() const override;
 };

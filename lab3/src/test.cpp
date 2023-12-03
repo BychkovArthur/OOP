@@ -5,6 +5,7 @@
 #include "../include/Rhombus.hpp"
 #include "../include/RhombusValidator.hpp"
 #include "../include/Trapezoid.hpp"
+#include "../include/TrapezoidValidator.hpp"
 
 using namespace std;
 // TODO конструктор по умолчанию
@@ -15,6 +16,13 @@ int main() {
     Point p3(0, 0);
     Point p4(3, 0);
     Trapezoid t1(p1, p2, p4, p3);
+    vector<Point> tpoints;
+    tpoints.push_back(p1);
+    tpoints.push_back(p2);
+    tpoints.push_back(p4);
+    tpoints.push_back(p3);
+    TrapezoidValidator* tval = new TrapezoidValidator;
+    tval->validate(tpoints);
 
     Point pp1(0, 0);
     Point pp2(2, 5);
@@ -37,10 +45,10 @@ int main() {
     Point pp16(0, -1);
     Rhombus r1(pp1, pp3, pp2, pp4);
     vector<Point> rpoints;
-    // rpoints.push_back(pp1);
-    // rpoints.push_back(pp3);
-    // rpoints.push_back(pp2);
-    // rpoints.push_back(pp4);
+    rpoints.push_back(pp1);
+    rpoints.push_back(pp3);
+    rpoints.push_back(pp2);
+    rpoints.push_back(pp4);
 
     // rpoints.push_back(pp5);
     // rpoints.push_back(pp6);
@@ -52,10 +60,10 @@ int main() {
     // rpoints.push_back(pp12);
     // rpoints.push_back(pp9);
 
-    rpoints.push_back(pp13);
-    rpoints.push_back(pp14);
-    rpoints.push_back(pp15);
-    rpoints.push_back(pp16);
+    // rpoints.push_back(pp13);
+    // rpoints.push_back(pp14);
+    // rpoints.push_back(pp15);
+    // rpoints.push_back(pp16);
     RhombusValidator* rval = new RhombusValidator;
     rval->validate(rpoints);
 
