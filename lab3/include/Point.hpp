@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
 
-struct Point 
-{
+struct Point {
     double x, y;
     Point();
     Point(int x, int y);

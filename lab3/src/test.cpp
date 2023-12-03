@@ -1,6 +1,6 @@
+#include "../include/Pentagon.hpp"
 #include "../include/Rhombus.hpp"
 #include "../include/Trapezoid.hpp"
-#include "../include/Pentagon.hpp"
 
 using namespace std;
 // TODO конструктор по умолчанию
@@ -22,14 +22,14 @@ int main() {
     Point a3(58.7788, -80.9017);
     Point a4(-58.778, -80.9017);
     Point a5(-95.10565, 30.9017);
-    Pentagon pent(a1, a2, a3, a4,a5);
+    Pentagon pent(a1, a2, a3, a4, a5);
 
     figures[0] = &t1;
     figures[1] = &r1;
     figures[2] = &pent;
     for (int i = 0; i < 3; ++i) {
         cout << figures[i]->getGeometricCenter() << endl;
-        cout << static_cast<double> (*figures[i]) << endl;
+        cout << static_cast<double>(*figures[i]) << endl;
         cout << *figures[i] << endl;
     }
 
@@ -42,5 +42,4 @@ int main() {
     //     cout << static_cast<double> (*figures[i]) << endl;
     //     cout << *figures[i] << endl;
     // }
-
 }
