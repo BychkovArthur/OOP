@@ -6,9 +6,6 @@ class Figure {
     friend std::ostream& operator<<(std::ostream&, const Figure&);
     friend std::istream& operator>>(std::istream&, Figure&);
 
-   protected:
-    static const unsigned int numberOfVertices;
-
    public:
     Figure() = default;
     virtual Point getGeometricCenter() const = 0;

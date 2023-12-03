@@ -12,11 +12,12 @@ class Rhombus : public Figure {
 
     void print(std::ostream&) const override;
     void read(std::istream&) override;
-
+    
    public:
     Rhombus(Point, Point, Point, Point);
-    Rhombus(Point[numberOfVertices]);
+    explicit Rhombus(Point[numberOfVertices]);
 
     Point getGeometricCenter() const override;
     operator double() const override;
+
 };

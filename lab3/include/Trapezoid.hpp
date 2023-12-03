@@ -20,7 +20,7 @@ class Trapezoid : public Figure {
     void read(std::istream&) override;
 
    public:
-    Trapezoid(Point[numberOfVertices]);
+    explicit Trapezoid(Point[numberOfVertices]);
     Trapezoid(Point, Point, Point, Point);
 
     Point getGeometricCenter() const override;

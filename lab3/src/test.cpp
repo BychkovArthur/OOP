@@ -1,3 +1,5 @@
+#include <vector>
+
 #include "../include/Pentagon.hpp"
 #include "../include/Rhombus.hpp"
 #include "../include/Trapezoid.hpp"

@@ -15,7 +15,7 @@ class Pentagon : public Figure {
 
    public:
     Pentagon(Point, Point, Point, Point, Point);
-    Pentagon(Point[numberOfVertices]);
+    explicit Pentagon(Point[numberOfVertices]);
 
     Point getGeometricCenter() const override;
     operator double() const override;
