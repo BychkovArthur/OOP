@@ -60,3 +60,5 @@ void Rhombus::read(std::istream& is) {
         is >> vertices[i];
     }
 }
+
+size_t Rhombus::getNumberOfVertices() { return numberOfVertices; }

@@ -30,3 +30,17 @@ bool equalDoubleValues(double a, double b) {
     double EPS = 1e-3;
     return std::abs(a - b) < EPS;
 }
+
+double getAngleCoefficientY(Point a, Point b) { return std::abs(a.y - b.y) / std::abs(a.x - b.x); }
+
+double getBCoefficientY(Point a, Point b) {
+    double k = getAngleCoefficientY(a, b);
+    return a.y - k * a.x;
+}
+
+double getAngleCoefficientX(Point a, Point b) { return std::abs(a.x - b.x) / std::abs(a.y - b.y); }
+
+double getBCoefficientX(Point a, Point b) {
+    double k = getAngleCoefficientX(a, b);
+    return a.x - k * a.y;
+}

@@ -6,7 +6,7 @@ class Rhombus : public Figure {
     friend std::istream& operator>>(std::istream&, Rhombus&);
 
    private:
-    static const unsigned int numberOfVertices = 4;
+    static const size_t numberOfVertices = 4;
 
     Point vertices[numberOfVertices];
 
@@ -17,6 +17,7 @@ class Rhombus : public Figure {
     Rhombus(Point, Point, Point, Point);
     explicit Rhombus(Point[numberOfVertices]);
 
+    static size_t getNumberOfVertices();
     Point getGeometricCenter() const override;
     operator double() const override;
 };

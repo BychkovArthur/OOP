@@ -6,5 +6,5 @@
 
 class FigureValidator {
    public:
-    virtual bool isValid(std::vector<Point>) = 0;
+    virtual void validate(const std::vector<Point>&) = 0;
 };

@@ -3,6 +3,7 @@
 #include "../include/Pentagon.hpp"
 #include "../include/PentagonValidator.hpp"
 #include "../include/Rhombus.hpp"
+#include "../include/RhombusValidator.hpp"
 #include "../include/Trapezoid.hpp"
 
 using namespace std;
@@ -14,11 +15,49 @@ int main() {
     Point p3(0, 0);
     Point p4(3, 0);
     Trapezoid t1(p1, p2, p4, p3);
-    Point pp1(1, 0);
-    Point pp2(-1, 0);
-    Point pp3(0, 1);
-    Point pp4(0, -1);
+
+    Point pp1(0, 0);
+    Point pp2(2, 5);
+    Point pp3(0, 3);
+    Point pp4(2, 2);
+
+    Point pp5(0, 0);
+    Point pp6(1, 1);
+    Point pp7(4, 1);
+    Point pp8(3, 0);
+
+    Point pp9(0, 0);
+    Point pp10(0, 1);
+    Point pp11(1, 1);
+    Point pp12(1, 0);
+
+    Point pp13(-1, 0);
+    Point pp14(0, 1);
+    Point pp15(1, 0);
+    Point pp16(0, -1);
     Rhombus r1(pp1, pp3, pp2, pp4);
+    vector<Point> rpoints;
+    // rpoints.push_back(pp1);
+    // rpoints.push_back(pp3);
+    // rpoints.push_back(pp2);
+    // rpoints.push_back(pp4);
+
+    // rpoints.push_back(pp5);
+    // rpoints.push_back(pp6);
+    // rpoints.push_back(pp7);
+    // rpoints.push_back(pp8);
+
+    // rpoints.push_back(pp10);
+    // rpoints.push_back(pp11);
+    // rpoints.push_back(pp12);
+    // rpoints.push_back(pp9);
+
+    rpoints.push_back(pp13);
+    rpoints.push_back(pp14);
+    rpoints.push_back(pp15);
+    rpoints.push_back(pp16);
+    RhombusValidator* rval = new RhombusValidator;
+    rval->validate(rpoints);
 
     Point a1(0, 100);
     Point a2(95.10565, 30.9017);
@@ -33,7 +72,7 @@ int main() {
     vpoints.push_back(a5);
 
     PentagonValidator* pval = new PentagonValidator;
-    pval->isValid(vpoints);
+    pval->validate(vpoints);
     Pentagon pent(a1, a2, a3, a4, a5);
 
     figures[0] = &t1;
