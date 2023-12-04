@@ -30,7 +30,7 @@ add_library(${CMAKE_PROJECT_NAME}_lib ${SOURCES})
 #---------------main.cpp------------------
 
 # Делаем исполняемый файл, в котором просто будем спрашивать пользователя входные данные
-add_executable(${CMAKE_PROJECT_NAME}_exe ${CMAKE_PROJECT_NAME}/main.cpp)
+add_executable(${CMAKE_PROJECT_NAME}_exe ${SOURCE_DIR}/main.cpp)
 # "Привязываем" (линкуем) бинарник main.cpp с библиотекой, в которой расположена функция
 target_link_libraries(${CMAKE_PROJECT_NAME}_exe PRIVATE ${CMAKE_PROJECT_NAME}_lib)
 

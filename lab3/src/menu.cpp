@@ -116,6 +116,8 @@ void addFigure(std::vector<Figure*>& figures) {
         case OperationType::CREATE_RHOMBUS:
             figures.push_back(rhombusFactory.createFigure(points));
             break;
+        default:
+            throw std::invalid_argument("Invalid figure type");
     }
 }
 
@@ -152,6 +154,8 @@ void menu() {
                 break;
             case OperationType::QUIT:
                 return;
+            default:
+                throw std::invalid_argument("Invalid menu type");
         }
     }
 }
