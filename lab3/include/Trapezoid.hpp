@@ -7,12 +7,11 @@ class Trapezoid : public Figure {
 
    private:
     static const size_t numberOfVertices = 4;
+    std::vector<Point> vertices;
 
     double height;
     double smallerBaseLength;
     double biggerBaseLength;
-
-    Point vertices[numberOfVertices];
 
     void calcHeight();
     void calcSidesLength();
@@ -21,6 +20,12 @@ class Trapezoid : public Figure {
 
    public:
     explicit Trapezoid(const std::vector<Point>&);
+    Trapezoid(const Trapezoid&);
+    Trapezoid(Trapezoid&&);
+
+    Trapezoid& operator=(const Trapezoid&);
+    Trapezoid& operator=(Trapezoid&&);
+    bool operator==(const Trapezoid&) const;
 
     static size_t getNumberOfVertices();
     Point getGeometricCenter() const override;

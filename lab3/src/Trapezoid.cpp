@@ -6,14 +6,50 @@
 
 #include "../include/functions.hpp"
 
-Trapezoid::Trapezoid(const std::vector<Point>& points) {
-    for (size_t i = 0; i < Trapezoid::getNumberOfVertices(); ++i) {
-        vertices[i] = points[i];
-    }
-
+Trapezoid::Trapezoid(const std::vector<Point>& points) : vertices(points) {
     calcHeight();
     calcSidesLength();
 }
+
+Trapezoid::Trapezoid(const Trapezoid& copy) : vertices(copy.vertices) {
+    calcHeight();
+    calcSidesLength();
+}
+
+Trapezoid::Trapezoid(Trapezoid&& moved) : vertices(std::move(moved.vertices)) {
+    calcHeight();
+    calcSidesLength();
+}
+
+Trapezoid& Trapezoid::operator=(const Trapezoid& copy) {
+    if (this == &copy) {
+        return *this;
+    }
+
+    vertices = copy.vertices;
+    height = copy.height;
+    smallerBaseLength = copy.smallerBaseLength;
+    biggerBaseLength = copy.biggerBaseLength;
+    return *this;
+}
+
+Trapezoid& Trapezoid::operator=(Trapezoid&& moved) {
+    if (this == &moved) {
+        return *this;
+    }
+
+    vertices = std::move(moved.vertices);
+    height = moved.height;
+    smallerBaseLength = moved.smallerBaseLength;
+    biggerBaseLength = moved.biggerBaseLength;
+
+    moved.height = 0;
+    moved.biggerBaseLength = 0;
+    moved.smallerBaseLength = 0;
+    return *this;
+}
+
+bool Trapezoid::operator==(const Trapezoid& other) const { return vertices == other.vertices; }
 
 void Trapezoid::calcHeight() {
     double sideLength1 = calcLength(vertices[1], vertices[2]);

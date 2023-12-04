@@ -7,7 +7,7 @@ double calcLength(Point, Point);
 double getCosine(Point, Point, Point);
 bool equalDoubleValues(double, double);
 
-double getAngleCoefficientY(Point, Point);
-double getBCoefficientY(Point, Point);
-double getAngleCoefficientX(Point, Point);
-double getBCoefficientX(Point, Point);
+double getAngleCoefficientY(const Point, const Point);
+double getBCoefficientY(const Point, const Point);
+double getAngleCoefficientX(const Point, const Point);
+double getBCoefficientX(const Point, const Point);

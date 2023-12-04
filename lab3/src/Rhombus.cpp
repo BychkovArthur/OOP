@@ -4,11 +4,28 @@
 
 #include "../include/functions.hpp"
 
-Rhombus::Rhombus(const std::vector<Point>& points) {
-    for (size_t i = 0; i < Rhombus::getNumberOfVertices(); ++i) {
-        vertices[i] = points[i];
+Rhombus::Rhombus(const std::vector<Point>& points) : vertices(points) {}
+Rhombus::Rhombus(const Rhombus& copy) : vertices(copy.vertices) {}
+Rhombus::Rhombus(Rhombus&& moved) : vertices(std::move(moved.vertices)) {}
+
+Rhombus& Rhombus::operator=(const Rhombus& copy) {
+    if (this == &copy) {
+        return *this;
     }
+    vertices = copy.vertices;
+    return *this;
 }
+
+Rhombus& Rhombus::operator=(Rhombus&& moved) {
+    if (this == &moved) {
+        return *this;
+    }
+
+    vertices = std::move(moved.vertices);
+    return *this;
+}
+
+bool Rhombus::operator==(const Rhombus& other) const { return vertices == other.vertices; }
 
 Point Rhombus::getGeometricCenter() const {
     Point geometricCenter;

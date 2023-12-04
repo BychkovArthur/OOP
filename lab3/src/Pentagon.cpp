@@ -6,11 +6,29 @@
 
 #include "../include/functions.hpp"
 
-Pentagon::Pentagon(const std::vector<Point>& points) {
-    for (size_t i = 0; i < Pentagon::getNumberOfVertices(); ++i) {
-        vertices[i] = points[i];
+Pentagon::Pentagon(const std::vector<Point>& points) : vertices(points) {}
+
+Pentagon::Pentagon(const Pentagon& copy) : vertices(copy.vertices) {}
+
+Pentagon::Pentagon(Pentagon&& moved) : vertices(std::move(moved.vertices)) {}
+
+Pentagon& Pentagon::operator=(const Pentagon& copy) {
+    if (this == &copy) {
+        return *this;
     }
+    vertices = copy.vertices;
+    return *this;
 }
+
+Pentagon& Pentagon::operator=(Pentagon&& moved) {
+    if (this == &moved) {
+        return *this;
+    }
+    vertices = std::move(moved.vertices);
+    return *this;
+}
+
+bool Pentagon::operator==(const Pentagon& other) const { return vertices == other.vertices; }
 
 size_t Pentagon::getNumberOfVertices() { return numberOfVertices; }
 

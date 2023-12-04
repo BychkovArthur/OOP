@@ -7,14 +7,19 @@ class Rhombus : public Figure {
 
    private:
     static const size_t numberOfVertices = 4;
-
-    Point vertices[numberOfVertices];
+    std::vector<Point> vertices;
 
     void print(std::ostream&) const override;
     void read(std::istream&) override;
 
    public:
     explicit Rhombus(const std::vector<Point>&);
+    Rhombus(const Rhombus&);
+    Rhombus(Rhombus&&);
+
+    Rhombus& operator=(const Rhombus&);
+    Rhombus& operator=(Rhombus&&);
+    bool operator==(const Rhombus&) const;
 
     static size_t getNumberOfVertices();
     Point getGeometricCenter() const override;
