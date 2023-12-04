@@ -52,14 +52,12 @@ Trapezoid& Trapezoid::operator=(Trapezoid&& moved) {
 bool Trapezoid::operator==(const Trapezoid& other) const { return vertices == other.vertices; }
 
 void Trapezoid::calcHeight() {
-    double sideLength1 = calcLength(vertices[1], vertices[2]);
-    double sideLength2 = calcLength(vertices[3], vertices[0]);
+    if (vertices[0].x == vertices[1].x) {
+        height = std::abs(vertices[0].x - vertices[3].x);
+    } else {
+        height = std::abs(vertices[0].y - vertices[3].y);
+    }
 
-    height =
-        std::sqrt(std::pow(sideLength1, 2) - std::pow((std::pow(smallerBaseLength - biggerBaseLength, 2) +
-                                                       std::pow(sideLength1, 2) - std::pow(sideLength2, 2)) /
-                                                          (2 * (smallerBaseLength - biggerBaseLength)),
-                                                      2));
 }
 
 void Trapezoid::calcSidesLength() {
