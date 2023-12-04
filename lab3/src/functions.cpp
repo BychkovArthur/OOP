@@ -1,6 +1,7 @@
 #include "../include/functions.hpp"
 
 #include <cmath>
+#include <vector>
 
 double max4(double a, double b, double c, double d) {
     a = std::max(a, b);
@@ -43,4 +44,12 @@ double getAngleCoefficientX(const Point a, const Point b) { return (a.x - b.x) /
 double getBCoefficientX(const Point a, const Point b) {
     double k = getAngleCoefficientX(a, b);
     return a.x - k * a.y;
+}
+
+double calculateSquareOfFigures(const std::vector<Figure*>& figures) {
+    double result = 0;
+    for (size_t i = 0; i < figures.size(); ++i) {
+        result += static_cast<double>(*figures[i]);
+    }
+    return result;
 }
