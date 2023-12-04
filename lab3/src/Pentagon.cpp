@@ -2,18 +2,15 @@
 
 #include <math.h>
 
+#include <vector>
+
 #include "../include/functions.hpp"
 
-Pentagon::Pentagon(Point first, Point second, Point third, Point fourth, Point fifth) {
-    vertices[0] = first;
-    vertices[1] = second;
-    vertices[2] = third;
-    vertices[3] = fourth;
-    vertices[4] = fifth;
+Pentagon::Pentagon(const std::vector<Point>& points) {
+    for (size_t i = 0; i < Pentagon::getNumberOfVertices(); ++i) {
+        vertices[i] = points[i];
+    }
 }
-
-Pentagon::Pentagon(Point _vertices[numberOfVertices])
-    : Pentagon(_vertices[0], _vertices[1], _vertices[2], _vertices[3], _vertices[4]) {}
 
 size_t Pentagon::getNumberOfVertices() { return numberOfVertices; }
 

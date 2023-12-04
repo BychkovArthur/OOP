@@ -7,15 +7,13 @@ class Pentagon : public Figure {
 
    private:
     static const size_t numberOfVertices = 5;
-
     Point vertices[numberOfVertices];
 
     void print(std::ostream&) const override;
     void read(std::istream&) override;
 
    public:
-    Pentagon(Point, Point, Point, Point, Point);
-    explicit Pentagon(Point[numberOfVertices]);
+    explicit Pentagon(const std::vector<Point>&);
 
     static size_t getNumberOfVertices();
     Point getGeometricCenter() const override;

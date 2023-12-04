@@ -14,8 +14,7 @@ class Rhombus : public Figure {
     void read(std::istream&) override;
 
    public:
-    Rhombus(Point, Point, Point, Point);
-    explicit Rhombus(Point[numberOfVertices]);
+    explicit Rhombus(const std::vector<Point>&);
 
     static size_t getNumberOfVertices();
     Point getGeometricCenter() const override;

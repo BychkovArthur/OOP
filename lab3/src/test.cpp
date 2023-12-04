@@ -1,28 +1,34 @@
 #include <vector>
 
 #include "../include/Pentagon.hpp"
+#include "../include/PentagonFactory.hpp"
 #include "../include/PentagonValidator.hpp"
 #include "../include/Rhombus.hpp"
+#include "../include/RhombusFactory.hpp"
 #include "../include/RhombusValidator.hpp"
 #include "../include/Trapezoid.hpp"
+#include "../include/TrapezoidFactory.hpp"
 #include "../include/TrapezoidValidator.hpp"
 
 using namespace std;
 // TODO конструктор по умолчанию
 int main() {
-    Figure* figures[3];
+    RhombusFactory rFact;
+    PentagonFactory pFact;
+    TrapezoidFactory tFact;
+
+    Figure* figures[6];
+
+    vector<Point> tpoints;
     Point p1(1, 1);
     Point p2(2, 1);
     Point p3(0, 0);
     Point p4(3, 0);
-    Trapezoid t1(p1, p2, p4, p3);
-    vector<Point> tpoints;
     tpoints.push_back(p1);
     tpoints.push_back(p2);
     tpoints.push_back(p4);
     tpoints.push_back(p3);
-    TrapezoidValidator* tval = new TrapezoidValidator;
-    tval->validate(tpoints);
+    figures[0] = tFact.createFigure(tpoints);
 
     Point pp1(0, 0);
     Point pp2(2, 5);
@@ -43,29 +49,35 @@ int main() {
     Point pp14(0, 1);
     Point pp15(1, 0);
     Point pp16(0, -1);
-    Rhombus r1(pp1, pp3, pp2, pp4);
-    vector<Point> rpoints;
-    rpoints.push_back(pp1);
-    rpoints.push_back(pp3);
-    rpoints.push_back(pp2);
-    rpoints.push_back(pp4);
 
-    // rpoints.push_back(pp5);
-    // rpoints.push_back(pp6);
-    // rpoints.push_back(pp7);
-    // rpoints.push_back(pp8);
+    vector<Point> rpoints1;
+    vector<Point> rpoints2;
+    vector<Point> rpoints3;
+    vector<Point> rpoints4;
+    rpoints1.push_back(pp1);
+    rpoints1.push_back(pp3);
+    rpoints1.push_back(pp2);
+    rpoints1.push_back(pp4);
 
-    // rpoints.push_back(pp10);
-    // rpoints.push_back(pp11);
-    // rpoints.push_back(pp12);
-    // rpoints.push_back(pp9);
+    rpoints2.push_back(pp5);
+    rpoints2.push_back(pp6);
+    rpoints2.push_back(pp7);
+    rpoints2.push_back(pp8);
 
-    // rpoints.push_back(pp13);
-    // rpoints.push_back(pp14);
-    // rpoints.push_back(pp15);
-    // rpoints.push_back(pp16);
-    RhombusValidator* rval = new RhombusValidator;
-    rval->validate(rpoints);
+    rpoints3.push_back(pp10);
+    rpoints3.push_back(pp11);
+    rpoints3.push_back(pp12);
+    rpoints3.push_back(pp9);
+
+    rpoints4.push_back(pp13);
+    rpoints4.push_back(pp14);
+    rpoints4.push_back(pp15);
+    rpoints4.push_back(pp16);
+
+    figures[1] = rFact.createFigure(rpoints4);
+    figures[2] = rFact.createFigure(rpoints4);
+    figures[3] = rFact.createFigure(rpoints3);
+    figures[4] = rFact.createFigure(rpoints4);
 
     Point a1(0, 100);
     Point a2(95.10565, 30.9017);
@@ -79,28 +91,11 @@ int main() {
     vpoints.push_back(a4);
     vpoints.push_back(a5);
 
-    PentagonValidator* pval = new PentagonValidator;
-    pval->validate(vpoints);
-    Pentagon pent(a1, a2, a3, a4, a5);
+    figures[5] = pFact.createFigure(vpoints);
 
-    figures[0] = &t1;
-    figures[1] = &r1;
-    figures[2] = &pent;
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 6; ++i) {
         cout << figures[i]->getGeometricCenter() << endl;
         cout << static_cast<double>(*figures[i]) << endl;
         cout << *figures[i] << endl;
     }
-
-    // cout << "Types are equal: " << (typeid(figures) == typeid(t1)) << endl;
-
-    // for (int i = 0; i < 2; ++i) {
-    //     cin >> *figures[i];
-    // }
-
-    //     for (int i = 0; i < 2; ++i) {
-    //     cout << figures[i]->getGeometricCenter() << endl;
-    //     cout << static_cast<double> (*figures[i]) << endl;
-    //     cout << *figures[i] << endl;
-    // }
 }

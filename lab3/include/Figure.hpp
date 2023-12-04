@@ -1,7 +1,9 @@
 #pragma once
 #include <iostream>
+#include <vector>
 
 #include "Point.hpp"
+
 class Figure {
     friend std::ostream& operator<<(std::ostream&, const Figure&);
     friend std::istream& operator>>(std::istream&, Figure&);

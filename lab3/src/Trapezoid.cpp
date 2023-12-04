@@ -2,21 +2,18 @@
 
 #include <math.h>
 
-#include "../include/Definitions.hpp"
+#include <vector>
+
 #include "../include/functions.hpp"
 
-Trapezoid::Trapezoid(Point first, Point second, Point third, Point fourth) {
-    vertices[0] = first;
-    vertices[1] = second;
-    vertices[2] = third;
-    vertices[3] = fourth;
+Trapezoid::Trapezoid(const std::vector<Point>& points) {
+    for (size_t i = 0; i < Trapezoid::getNumberOfVertices(); ++i) {
+        vertices[i] = points[i];
+    }
 
     calcHeight();
     calcSidesLength();
 }
-
-Trapezoid::Trapezoid(Point _vertices[numberOfVertices])
-    : Trapezoid(_vertices[0], _vertices[1], _vertices[2], _vertices[3]) {}
 
 void Trapezoid::calcHeight() {
     double sideLength1 = calcLength(vertices[1], vertices[2]);
