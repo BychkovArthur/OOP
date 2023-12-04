@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "functions.hpp"
+
 Point::Point() : x(0.0), y(0.0) {}
 Point::Point(int x, int y) : x(x), y(y) {}
 Point::Point(double x, double y) : x(x), y(y) {}
@@ -11,7 +13,7 @@ Point::Point(Point&& moved) : x(moved.x), y(moved.y) {
     moved.y = 0;
 }
 
-bool Point::operator==(const Point& point) const { return x == point.x && y == point.y; }
+bool Point::operator==(const Point& point) const { return equalDoubleValues(x, point.x) && equalDoubleValues(y, point.y); }
 
 Point& Point::operator=(const Point& copy) {
     if (this == &copy) {
