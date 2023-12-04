@@ -79,9 +79,7 @@ Point Trapezoid::getGeometricCenter() const {
     return geometricCenter;
 }
 
-Trapezoid::operator double() const {
-    return (smallerBaseLength + biggerBaseLength) * height / 2;
-}
+Trapezoid::operator double() const { return (smallerBaseLength + biggerBaseLength) * height / 2; }
 
 std::ostream& operator<<(std::ostream& os, const Trapezoid& trapezoid) {
     os << "Trapezoid: ";
