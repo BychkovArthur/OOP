@@ -80,8 +80,6 @@ Point Trapezoid::getGeometricCenter() const {
 }
 
 Trapezoid::operator double() const {
-    double smallerBaseLength = calcLength(vertices[0], vertices[1]);
-    double biggerBaseLength = calcLength(vertices[2], vertices[3]);
     return (smallerBaseLength + biggerBaseLength) * height / 2;
 }
 
