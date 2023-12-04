@@ -1,262 +1,238 @@
-// #include <gtest/gtest.h>
-// #include <tuple>
-// #include <vector>
+#include <gtest/gtest.h>
+#include <tuple>
+#include <vector>
+#include <cmath>
 
-// class DynamicArrayParametrTests :public ::testing::TestWithParam<std::pair<unsigned int, unsigned int>>
-// {
-// protected:
-//     vector
-// };
+#include "Point.hpp"
+#include "Trapezoid.hpp"
+#include "Pentagon.hpp"
+#include "Rhombus.hpp"
+#include "RhombusFactory.hpp"
+#include "TrapezoidFactory.hpp"
+#include "PentagonFactory.hpp"
+#include "functions.hpp"
 
-// TEST_P(DynamicArrayParametrTests, PushAndPopChecking) {
-//     // arrange
-//     unsigned int pushTimes = GetParam().first;
-//     unsigned int popTimes = GetParam().second;
+PentagonFactory pentagonFactory;
+RhombusFactory rhombusFactory;
+TrapezoidFactory trapezoidFactory;
 
-//     // act
-//     for (unsigned int i = 0; i < pushTimes; ++i) {
-//         vector.pushBack('0' + i);
-//     }
-//     for (unsigned int i = 0; i < popTimes; ++i) {
-//         vector.popBack();
-//     }
+class TrapezoidIncorrectParametrTest :public ::testing::TestWithParam<std::vector<Point>> { };
 
-//     // assert
-//     EXPECT_EQ(vector.getSize(), pushTimes - popTimes);
-//     if (pushTimes > popTimes) {
-//         EXPECT_EQ(vector[0], '0');
-//     }
-//     if (pushTimes - popTimes - 1 < 10) {
-//         EXPECT_EQ(vector[pushTimes - popTimes - 1], '0' + (pushTimes - popTimes - 1));
-//     }
+TEST_P(TrapezoidIncorrectParametrTest, IncorrectVertices) {
+    // arrange
+    std::vector<Point> points = GetParam();
 
-// }
+    // act
+    // Must be std::invalid_argument
 
-// INSTANTIATE_TEST_CASE_P(
-//         DynamicArrayTests,
-//         DynamicArrayParametrTests,
-//         ::testing::Values(
-//                 std::pair<int, int>(150, 150),
-//                 std::pair<int, int>(150, 149),
-//                 std::pair<int, int>(150, 145),
-//                 std::pair<int, int>(1025, 0),
-//                 std::pair<int, int>(0, 0)));
+    // assert
+    ASSERT_THROW(trapezoidFactory.createFigure(points), std::invalid_argument);
 
+}
 
-// class FourNumberAddTestParametrTest :public ::testing::TestWithParam<std::tuple<const char*, const char*, const char*>> { };
+INSTANTIATE_TEST_CASE_P(
+        TrapezoidIncorrectTest,
+        TrapezoidIncorrectParametrTest,
+        ::testing::Values(
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0), Point(1, 0)},
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0), Point(1, 0), Point(1, 2), Point(3, 4)},
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0)},
+                std::vector<Point>{Point(0, 0), Point(0, 1), Point(1, 1), Point(2, 0)}));
 
-// TEST_P(FourNumberAddTestParametrTest, AddTests) {
-//     // arrange
-//     Four num1(std::string(std::get<0>(GetParam())));
-//     Four num2(std::string(std::get<1>(GetParam())));
-//     Four resultNumber(std::string(std::get<2>(GetParam())));
-//     bool result;
+class RhombusIncorrectParametrTest :public ::testing::TestWithParam<std::vector<Point>> { };
 
-//     // act
-//     num1.add(num2);
-//     result = num1.equal(resultNumber);
+TEST_P(RhombusIncorrectParametrTest, IncorrectVertices) {
+    // arrange
+    std::vector<Point> points = GetParam();
 
-//     // assert
-//     EXPECT_EQ(result, true);
-// }
+    // act
+    // Must be std::invalid_argument
 
-// INSTANTIATE_TEST_CASE_P(
-//         AddTests,
-//         FourNumberAddTestParametrTest,
-//         ::testing::Values(
-//                 std::make_tuple("0", "0", "0"),
-//                 std::make_tuple("1", "0", "1"),
-//                 std::make_tuple("0", "1", "1"),
-//                 std::make_tuple("2", "0", "2"),
-//                 std::make_tuple("0", "2", "2"),
-//                 std::make_tuple("1", "1", "2"),
-//                 std::make_tuple("3", "0", "3"),
-//                 std::make_tuple("0", "3", "3"),
-//                 std::make_tuple("1", "2", "3"),
-//                 std::make_tuple("2", "1", "3"),
-//                 std::make_tuple("3", "1", "10"),
-//                 std::make_tuple("1", "3", "10"),
-//                 std::make_tuple("2", "3", "11"),
-//                 std::make_tuple("3", "2", "11"),
-//                 std::make_tuple("3", "3", "12"),
-//                 std::make_tuple("11", "3", "20"),
-//                 std::make_tuple("123", "3", "132"),
-//                 std::make_tuple("111111", "3", "111120"),
-//                 std::make_tuple("111111", "333333", "1111110"),
-//                 std::make_tuple("333333", "1", "1000000"),
-//                 std::make_tuple("333333", "2", "1000001"),
-//                 std::make_tuple("333333", "3", "1000002")));
+    // assert
+    ASSERT_THROW(rhombusFactory.createFigure(points), std::invalid_argument);
+
+}
+
+INSTANTIATE_TEST_CASE_P(
+        RhombusIncorrectTest,
+        RhombusIncorrectParametrTest,
+        ::testing::Values(
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0), Point(1, 0)},
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0), Point(1, 0), Point(1, 2), Point(3, 4)},
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0)},
+                std::vector<Point>{Point(0, 0), Point(0, 1), Point(1, 1), Point(2, 0)}));
 
 
-// class FourNumberSubtractTestParametrTest :public ::testing::TestWithParam<std::tuple<const char*, const char*, const char*>> { };
+class PentagonIncorrectParametrTest :public ::testing::TestWithParam<std::vector<Point>> { };
 
-// TEST_P(FourNumberSubtractTestParametrTest, SubtractTests) {
-//     // arrange
-//     Four num1(std::string(std::get<0>(GetParam())));
-//     Four num2(std::string(std::get<1>(GetParam())));
-//     Four resultNumber(std::string(std::get<2>(GetParam())));
-//     bool result;
+TEST_P(PentagonIncorrectParametrTest, IncorrectVertices) {
+    // arrange
+    std::vector<Point> points = GetParam();
 
-//     // act
-//     num1.subtract(num2);
-//     result = num1.equal(resultNumber);
+    // act
+    // Must be std::invalid_argument
 
-//     // assert
-//     EXPECT_EQ(result, true);
-// }
+    // assert
+    ASSERT_THROW(pentagonFactory.createFigure(points), std::invalid_argument);
 
-// INSTANTIATE_TEST_CASE_P(
-//         SubtractTests,
-//         FourNumberSubtractTestParametrTest,
-//         ::testing::Values(
-//                 std::make_tuple("0", "0", "0"),
-//                 std::make_tuple("2", "0", "2"),
-//                 std::make_tuple("3", "0", "3"),
-//                 std::make_tuple("10", "0", "10"),
-//                 std::make_tuple("10", "1", "3"),
-//                 std::make_tuple("10", "2", "2"),
-//                 std::make_tuple("10", "3", "1"),
-//                 std::make_tuple("10", "10", "0"),
-//                 std::make_tuple("321", "10", "311"),
-//                 std::make_tuple("321", "12", "303"),
-//                 std::make_tuple("321", "11", "310"),
-//                 std::make_tuple("311231", "3312", "301313"),
-//                 std::make_tuple("1000", "1", "333"),
-//                 std::make_tuple("1000", "2", "332")));
+}
 
+INSTANTIATE_TEST_CASE_P(
+        PentagonIncorrectTest,
+        PentagonIncorrectParametrTest,
+        ::testing::Values(
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0), Point(1, 0)},
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0), Point(1, 0), Point(1, 2), Point(3, 4)},
+                std::vector<Point>{Point(0, 0), Point(1, 0), Point(0, 0), Point(1, 2), Point(3, 4)},
+                std::vector<Point>{Point(0, 0), Point(0, 1), Point(1, 1), Point(2, 0), Point(8, -15)}));
 
-// class FourNumberGreaterThanParametrTests :public ::testing::TestWithParam<std::tuple<const char*, const char*, const char*>> { };
+class TrapezoidSquareParametrTest :public ::testing::TestWithParam<std::pair<std::vector<Point>, double>> { };
 
-// TEST_P(FourNumberGreaterThanParametrTests, greaterThanTests) {
-//     // arrange
-//     Four num1(std::string(std::get<0>(GetParam())));
-//     Four num2(std::string(std::get<1>(GetParam())));
-//     std::string correctAnswerStr(std::get<2>(GetParam()));
-//     bool correctAnswerBool = correctAnswerStr == "1" ? 1 : 0;
-//     bool result;
+TEST_P(TrapezoidSquareParametrTest, IncorrectVertices) {
+    // arrange
+    std::vector<Point> points = GetParam().first;
+    double correctResult = GetParam().second;
+    Figure* trapezoid = trapezoidFactory.createFigure(points);
 
-//     // act
-//     result = num1.greaterThan(num2);
+    // act
+    double square = static_cast<double>(*trapezoid);
 
-//     // assert
-//     EXPECT_EQ(result, correctAnswerBool);
-// }
+    // assert
+    EXPECT_EQ(square, correctResult);
 
-// INSTANTIATE_TEST_CASE_P(
-//         greaterThanTests,
-//         FourNumberGreaterThanParametrTests,
-//         ::testing::Values(
-//                 std::make_tuple("1000", "2", "1"),
-//                 std::make_tuple("2", "2", "0"),
-//                 std::make_tuple("0", "2", "0")));
+}
 
+INSTANTIATE_TEST_CASE_P(
+        TrapezoidSquareTest,
+        TrapezoidSquareParametrTest,
+        ::testing::Values(
+                std::pair(std::vector<Point>{Point(1, 1), Point(2, 1), Point(3, 0), Point(0, 0)}, 2),
+                std::pair(std::vector<Point>{Point(2, -1), Point(1, -1), Point(0, 0), Point(3, 0)}, 2),
+                std::pair(std::vector<Point>{Point(0, 1), Point(0, 2), Point(1, 3), Point(1, 0)}, 2),
+                std::pair(std::vector<Point>{Point(1, 2), Point(1, 1), Point(0, 0), Point(0, 3)}, 2)));
 
-// class FourNumberLowerThanParametrTests :public ::testing::TestWithParam<std::tuple<const char*, const char*, const char*>> { };
+class RhombusSquareParametrTest :public ::testing::TestWithParam<std::pair<std::vector<Point>, double>> { };
 
-// TEST_P(FourNumberLowerThanParametrTests, lowerThanTests) {
-//     // arrange
-//     Four num1(std::string(std::get<0>(GetParam())));
-//     Four num2(std::string(std::get<1>(GetParam())));
-//     std::string correctAnswerStr(std::get<2>(GetParam()));
-//     bool correctAnswerBool = correctAnswerStr == "1" ? 1 : 0;
-//     bool result;
+TEST_P(RhombusSquareParametrTest, IncorrectVertices) {
+    // arrange
+    std::vector<Point> points = GetParam().first;
+    double correctResult = GetParam().second;
+    Figure* rhombus = rhombusFactory.createFigure(points);
 
-//     // act
-//     result = num1.lowerThan(num2);
+    // act
+    double square = static_cast<double>(*rhombus);
 
-//     // assert
-//     EXPECT_EQ(result, correctAnswerBool);
-// }
+    // assert
+    EXPECT_EQ(equalDoubleValues(square, correctResult), true);
 
-// INSTANTIATE_TEST_CASE_P(
-//         lowerThanTests,
-//         FourNumberLowerThanParametrTests,
-//         ::testing::Values(
-//                 std::make_tuple("0", "2", "1"),
-//                 std::make_tuple("2", "2", "0"),
-//                 std::make_tuple("3", "2", "0")));
+}
 
+INSTANTIATE_TEST_CASE_P(
+        RhombusSquareTest,
+        RhombusSquareParametrTest,
+        ::testing::Values(
+                std::pair(std::vector<Point>{Point(0, 0), Point(0, 1), Point(1, 1), Point(1, 0)}, 1),
+                std::pair(std::vector<Point>{Point(0, 1), Point(1, 0), Point(0, -1), Point(-1, 0)}, 2),
+                std::pair(std::vector<Point>{Point(0, 2), Point(1, 0), Point(0, -2), Point(-1, 0)}, 4),
+                std::pair(std::vector<Point>{Point(0, 1), Point(2, 0), Point(0, -1), Point(-2, 0)}, 4)));
 
-// class FourNumberGreaterThanEqParametrTests :public ::testing::TestWithParam<std::tuple<const char*, const char*, const char*>> { };
+class PentagonSquareParametrTest :public ::testing::TestWithParam<std::pair<std::vector<Point>, double>> { };
 
-// TEST_P(FourNumberGreaterThanEqParametrTests, greaterThanEqTests) {
-//     // arrange
-//     Four num1(std::string(std::get<0>(GetParam())));
-//     Four num2(std::string(std::get<1>(GetParam())));
-//     std::string correctAnswerStr(std::get<2>(GetParam()));
-//     bool correctAnswerBool = correctAnswerStr == "1" ? 1 : 0;
-//     bool result;
+TEST_P(PentagonSquareParametrTest, IncorrectVertices) {
+    // arrange
+    double EPS = 1e-1;
+    std::vector<Point> points = GetParam().first;
+    double correctResult = GetParam().second;
+    Figure* pentagon = pentagonFactory.createFigure(points);
 
-//     // act
-//     result = num1.greaterThanEq(num2);
+    // act
+    double square = static_cast<double>(*pentagon);
 
-//     // assert
-//     EXPECT_EQ(result, correctAnswerBool);
-// }
+    // assert
+    EXPECT_EQ(std::abs(square - correctResult) < EPS, true);
+}
 
-// INSTANTIATE_TEST_CASE_P(
-//         greaterThanEqTests,
-//         FourNumberGreaterThanEqParametrTests,
-//         ::testing::Values(
-//                 std::make_tuple("23", "22", "1"),
-//                 std::make_tuple("22", "22", "1"),
-//                 std::make_tuple("21", "22", "0")));
+INSTANTIATE_TEST_CASE_P(
+        PentagonSquareTest,
+        PentagonSquareParametrTest,
+        ::testing::Values(
+                std::pair(std::vector<Point>{Point(0, 100), Point(95.10565, 30.9017), Point(58.7788, -80.9017),
+                                            Point(-58.778, -80.9017), Point(-95.10565, 30.9017)},
+                                            5.0 / 2.0 * 100 * 100 * std::sin(1.2566370614359L))));
 
+class TrapezoidGeometricCenterParametrTest :public ::testing::TestWithParam<std::pair<std::vector<Point>, Point>> { };
 
-// class FourNumberLowerThanEqParametrTests :public ::testing::TestWithParam<std::tuple<const char*, const char*, const char*>> { };
+TEST_P(TrapezoidGeometricCenterParametrTest, IncorrectVertices) {
+    // arrange
+    std::vector<Point> points = GetParam().first;
+    Point correctResult = GetParam().second;
+    Figure* trapezoid = trapezoidFactory.createFigure(points);
 
-// TEST_P(FourNumberLowerThanEqParametrTests, lowerThanEqTests) {
-//     // arrange
-//     Four num1(std::string(std::get<0>(GetParam())));
-//     Four num2(std::string(std::get<1>(GetParam())));
-//     std::string correctAnswerStr(std::get<2>(GetParam()));
-//     bool correctAnswerBool = correctAnswerStr == "1" ? 1 : 0;
-//     bool result;
+    // act
+    Point center = trapezoid->getGeometricCenter();
 
-//     // act
-//     result = num1.lowerThanEq(num2);
+    // assert
+    EXPECT_EQ(center, correctResult);
 
-//     // assert
-//     EXPECT_EQ(result, correctAnswerBool);
-// }
+}
 
-// INSTANTIATE_TEST_CASE_P(
-//         lowerThanEqTests,
-//         FourNumberLowerThanEqParametrTests,
-//         ::testing::Values(
-//                 std::make_tuple("22", "22", "1"),
-//                 std::make_tuple("13", "22", "1"),
-//                 std::make_tuple("23", "22", "0")));
+INSTANTIATE_TEST_CASE_P(
+        TrapezoidGeometricCenterTest,
+        TrapezoidGeometricCenterParametrTest,
+        ::testing::Values(
+                std::pair(std::vector<Point>{Point(1, 1), Point(2, 1), Point(3, 0), Point(0, 0)}, Point(1.5, 1.58333)),
+                std::pair(std::vector<Point>{Point(2, -1), Point(1, -1), Point(0, 0), Point(3, 0)}, Point(1.5, -0.416667)),
+                std::pair(std::vector<Point>{Point(0, 1), Point(0, 2), Point(1, 3), Point(1, 0)}, Point(0.0, 2.08333)),
+                std::pair(std::vector<Point>{Point(1, 2), Point(1, 1), Point(0, 0), Point(0, 3)}, Point(1.0, 2.08333))));
 
+class RhombusGeometricCenterParametrTest :public ::testing::TestWithParam<std::pair<std::vector<Point>, Point>> { };
 
-// class FourNumberEqualParametrTests :public ::testing::TestWithParam<std::tuple<const char*, const char*, const char*>> { };
+TEST_P(RhombusGeometricCenterParametrTest, IncorrectVertices) {
+    // arrange
+    std::vector<Point> points = GetParam().first;
+    Point correctResult = GetParam().second;
+    Figure* rhombus = rhombusFactory.createFigure(points);
 
-// TEST_P(FourNumberEqualParametrTests, equalTests) {
-//     // arrange
-//     Four num1(std::string(std::get<0>(GetParam())));
-//     Four num2(std::string(std::get<1>(GetParam())));
-//     std::string correctAnswerStr(std::get<2>(GetParam()));
-//     bool correctAnswerBool = correctAnswerStr == "1" ? 1 : 0;
-//     bool result;
+    // act
+    Point center = rhombus->getGeometricCenter();
 
-//     // act
-//     result = num1.equal(num2);
+    // assert
+    EXPECT_EQ(center, correctResult);
+}
 
-//     // assert
-//     EXPECT_EQ(result, correctAnswerBool);
-// }
+INSTANTIATE_TEST_CASE_P(
+        RhombusGeometricCenterTest,
+        RhombusGeometricCenterParametrTest,
+        ::testing::Values(
+                std::pair(std::vector<Point>{Point(0, 0), Point(0, 1), Point(1, 1), Point(1, 0)}, Point(0.5, 0.5)),
+                std::pair(std::vector<Point>{Point(0, 1), Point(1, 0), Point(0, -1), Point(-1, 0)}, Point(0, 0)),
+                std::pair(std::vector<Point>{Point(0, 2), Point(1, 0), Point(0, -2), Point(-1, 0)}, Point(0, 0)),
+                std::pair(std::vector<Point>{Point(0, 1), Point(2, 0), Point(0, -1), Point(-2, 0)}, Point(0, 0))));
 
-// INSTANTIATE_TEST_CASE_P(
-//         equalTests,
-//         FourNumberEqualParametrTests,
-//         ::testing::Values(
-//                 std::make_tuple("3", "2", "0"),
-//                 std::make_tuple("22", "22", "1"),
-//                 std::make_tuple("1", "2", "0")));
+class PentagonGeometricCenterParametrTest :public ::testing::TestWithParam<std::pair<std::vector<Point>, Point>> { };
 
+TEST_P(PentagonGeometricCenterParametrTest, IncorrectVertices) {
+    // arrange
+    std::vector<Point> points = GetParam().first;
+    Point correctResult = GetParam().second;
+    Figure* pentagon = pentagonFactory.createFigure(points);
 
+    // act
+    Point center = pentagon->getGeometricCenter();
 
-// int main(int argc, char **argv) {
-// 	testing::InitGoogleTest(&argc, argv);
-// 	return RUN_ALL_TESTS();
-// }
+    // assert
+    EXPECT_EQ(center, correctResult);
+}
+
+INSTANTIATE_TEST_CASE_P(
+        PentagonGeometricCenterTest,
+        PentagonGeometricCenterParametrTest,
+        ::testing::Values(
+                std::pair(std::vector<Point>{Point(0, 100), Point(95.10565, 30.9017), Point(58.7788, -80.9017),
+                                            Point(-58.778, -80.9017), Point(-95.10565, 30.9017)},
+                                            Point(0.0, 0.0))));
+
+int main(int argc, char **argv) {
+	testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}

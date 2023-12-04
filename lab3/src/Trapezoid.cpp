@@ -57,7 +57,6 @@ void Trapezoid::calcHeight() {
     } else {
         height = std::abs(vertices[0].y - vertices[3].y);
     }
-
 }
 
 void Trapezoid::calcSidesLength() {

@@ -13,7 +13,9 @@ Point::Point(Point&& moved) : x(moved.x), y(moved.y) {
     moved.y = 0;
 }
 
-bool Point::operator==(const Point& point) const { return equalDoubleValues(x, point.x) && equalDoubleValues(y, point.y); }
+bool Point::operator==(const Point& point) const {
+    return equalDoubleValues(x, point.x) && equalDoubleValues(y, point.y);
+}
 
 Point& Point::operator=(const Point& copy) {
     if (this == &copy) {
