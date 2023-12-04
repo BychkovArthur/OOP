@@ -1,4 +1,4 @@
-#include "../include/Figure.hpp"
+#include "Figure.hpp"
 
 std::ostream& operator<<(std::ostream& os, const Figure& figure) {
     figure.print(os);

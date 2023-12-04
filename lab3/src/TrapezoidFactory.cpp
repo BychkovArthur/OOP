@@ -1,7 +1,7 @@
-#include "../include/TrapezoidFactory.hpp"
+#include "TrapezoidFactory.hpp"
 
-#include "../include/Trapezoid.hpp"
-#include "../include/TrapezoidValidator.hpp"
+#include "Trapezoid.hpp"
+#include "TrapezoidValidator.hpp"
 
 Figure* TrapezoidFactory::createFigure(const std::vector<Point>& points) {
     TrapezoidValidator validator;

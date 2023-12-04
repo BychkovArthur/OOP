@@ -1,10 +1,10 @@
-#include "../include/Trapezoid.hpp"
+#include "Trapezoid.hpp"
 
 #include <math.h>
 
 #include <vector>
 
-#include "../include/functions.hpp"
+#include "functions.hpp"
 
 Trapezoid::Trapezoid(const std::vector<Point>& points) : vertices(points) {
     calcHeight();

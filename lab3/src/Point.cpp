@@ -1,4 +1,4 @@
-#include "../include/Point.hpp"
+#include "Point.hpp"
 
 #include <iostream>
 

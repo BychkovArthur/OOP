@@ -1,7 +1,7 @@
-#include "../include/RhombusValidator.hpp"
+#include "RhombusValidator.hpp"
 
-#include "../include/Rhombus.hpp"
-#include "../include/functions.hpp"
+#include "Rhombus.hpp"
+#include "functions.hpp"
 
 void RhombusValidator::validate(const std::vector<Point>& points) {
     RhombusValidator::validateNumberOfVertices(points);

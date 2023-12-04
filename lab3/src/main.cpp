@@ -1,4 +1,4 @@
-#include "../include/menu.hpp"
+#include "menu.hpp"
 
 int main() {
     menu();

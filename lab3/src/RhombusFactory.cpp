@@ -1,7 +1,7 @@
-#include "../include/RhombusFactory.hpp"
+#include "RhombusFactory.hpp"
 
-#include "../include/Rhombus.hpp"
-#include "../include/RhombusValidator.hpp"
+#include "Rhombus.hpp"
+#include "RhombusValidator.hpp"
 
 Figure* RhombusFactory::createFigure(const std::vector<Point>& points) {
     RhombusValidator validator;

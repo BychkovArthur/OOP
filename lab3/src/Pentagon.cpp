@@ -1,10 +1,10 @@
-#include "../include/Pentagon.hpp"
+#include "Pentagon.hpp"
 
 #include <math.h>
 
 #include <vector>
 
-#include "../include/functions.hpp"
+#include "functions.hpp"
 
 Pentagon::Pentagon(const std::vector<Point>& points) : vertices(points) {}
 

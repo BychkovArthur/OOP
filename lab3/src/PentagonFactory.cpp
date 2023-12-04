@@ -1,7 +1,7 @@
-#include "../include/PentagonFactory.hpp"
+#include "PentagonFactory.hpp"
 
-#include "../include/Pentagon.hpp"
-#include "../include/PentagonValidator.hpp"
+#include "Pentagon.hpp"
+#include "PentagonValidator.hpp"
 
 Figure* PentagonFactory::createFigure(const std::vector<Point>& points) {
     PentagonValidator validator;

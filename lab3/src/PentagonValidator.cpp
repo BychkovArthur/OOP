@@ -1,7 +1,7 @@
-#include "../include/PentagonValidator.hpp"
+#include "PentagonValidator.hpp"
 
-#include "../include/Pentagon.hpp"
-#include "../include/functions.hpp"
+#include "Pentagon.hpp"
+#include "functions.hpp"
 
 void PentagonValidator::validate(const std::vector<Point>& points) {
     PentagonValidator::validateNumberOfVertices(points);

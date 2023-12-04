@@ -1,8 +1,8 @@
-#include "../include/Rhombus.hpp"
+#include "Rhombus.hpp"
 
 #include <vector>
 
-#include "../include/functions.hpp"
+#include "functions.hpp"
 
 Rhombus::Rhombus(const std::vector<Point>& points) : vertices(points) {}
 Rhombus::Rhombus(const Rhombus& copy) : vertices(copy.vertices) {}

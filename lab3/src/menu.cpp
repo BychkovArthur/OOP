@@ -1,17 +1,17 @@
-#include "../include/menu.hpp"
+#include "menu.hpp"
 
 #include <cstdlib>
 
-#include "../include/Pentagon.hpp"
-#include "../include/PentagonFactory.hpp"
-#include "../include/PentagonValidator.hpp"
-#include "../include/Rhombus.hpp"
-#include "../include/RhombusFactory.hpp"
-#include "../include/RhombusValidator.hpp"
-#include "../include/Trapezoid.hpp"
-#include "../include/TrapezoidFactory.hpp"
-#include "../include/TrapezoidValidator.hpp"
-#include "../include/functions.hpp"
+#include "Pentagon.hpp"
+#include "PentagonFactory.hpp"
+#include "PentagonValidator.hpp"
+#include "Rhombus.hpp"
+#include "RhombusFactory.hpp"
+#include "RhombusValidator.hpp"
+#include "Trapezoid.hpp"
+#include "TrapezoidFactory.hpp"
+#include "TrapezoidValidator.hpp"
+#include "functions.hpp"
 
 void printFigureSelector() {
     std::cout << std::endl << ">>> Select figure: " << std::endl;

@@ -1,7 +1,7 @@
-#include "../include/TrapezoidValidator.hpp"
+#include "TrapezoidValidator.hpp"
 
-#include "../include/Trapezoid.hpp"
-#include "../include/functions.hpp"
+#include "Trapezoid.hpp"
+#include "functions.hpp"
 
 void TrapezoidValidator::validate(const std::vector<Point>& points) {
     TrapezoidValidator::validateNumberOfVertices(points);
