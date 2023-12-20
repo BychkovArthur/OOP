@@ -48,7 +48,7 @@ int main() {
 
     // Заполнение контейнера и печать его элементов
     for (int i = 0; i < 20; ++i) {
-        l.push_back(i);
+        l.push_back(i * i);
     }
 
     std::cout << "\nList elements:" << std::endl;
