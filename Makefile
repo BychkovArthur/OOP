@@ -1,7 +1,7 @@
 .PHONY: build run test clean
 
 minLabNum = 1
-maxLabNum = 5
+maxLabNum = 6
 
 build: clean
 	@if [ $(labNum) -ge $(minLabNum) ] && [ $(labNum) -le $(maxLabNum) ]; then\
